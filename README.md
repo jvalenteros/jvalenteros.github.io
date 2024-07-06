@@ -2,6 +2,8 @@
 
 This project will showcase my skills, projects, and academic achievements in a clean, responsive, and interactive format.
 
+My website's UI theme and styling is inspired by Apple aesthetics, and showcases elements of modern responsive design, and CSS techniques.
+
 ## Languages Used
 
 - HTML5

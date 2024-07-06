@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Projects</title>
+    <style>
+        /* some appple inspired CSS, subject to change? */
+        :root {
+            --apple-blue: #007AFF;
+            --apple-gray: #F5F5F7;
+            --apple-dark-gray: #1D1D1F;
+            --apple-text: #1D1D1F;
+            --apple-text-secondary: #86868B;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.47059;
+            font-weight: 400;
+            letter-spacing: -0.022em;
+            color: var(--apple-text);
+            background-color: #FFFFFF;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 22px;
+        }
+        
+        header {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 9999;
+            transition: background-color 0.3s ease;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 44px;
+        }
+        
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li:first-child {
+            margin-left: 0;
+        }
+        
+        nav ul li a {
+            color: var(--apple-text);
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: -0.01em;
+            transition: color 0.3s ease;
+        }
+        
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--apple-blue);
+        }
+        
+        h1 {
+            font-size: 56px;
+            line-height: 1.07143;
+            font-weight: 600;
+            letter-spacing: -0.005em;
+            margin-bottom: 6px;
+        }
+        
+        h2 {
+            font-size: 28px;
+            line-height: 1.10722;
+            font-weight: 600;
+            letter-spacing: .004em;
+            margin-top: 56px;
+            margin-bottom: 28px;
+        }
+        
+        p {
+            font-size: 17px;
+            line-height: 1.47059;
+            letter-spacing: -0.022em;
+            margin-bottom: 20px;
+        }
+        
+        .hero {
+            padding-top: 128px;
+            padding-bottom: 64px;
+            text-align: center;
+            background-color: var(--apple-gray);
+        }
+        
+        .content {
+            padding: 64px 0;
+        }
+        
+        .project {
+            background-color: #fff;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project h3 {
+            margin-top: 0;
+            color: var(--apple-blue);
+        }
+        
+        .project-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, opacity 0.5s ease;
+            opacity: 0;
+        }
+        
+        .project-details.show {
+            max-height: 1000px;
+            opacity: 1;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e5e5;
+        }
+        
+        .show-details {
+            background-color: var(--apple-blue);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        
+        .show-details:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+        
+        footer {
+            background-color: var(--apple-gray);
+            color: var(--apple-text-secondary);
+            font-size: 12px;
+            padding: 16px 0;
+            text-align: center;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+        
+        .animate-in:nth-child(1) { animation-delay: 0.1s; }
+        .animate-in:nth-child(2) { animation-delay: 0.2s; }
+        .animate-in:nth-child(3) { animation-delay: 0.3s; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about-me.html">About Me</a></li>
+                    <li><a href="projects.html" class="active">Projects</a></li>
+                    <li><a href="transcripts.html">Transcripts</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h1 class="animate-in">Projects</h1>
+            <p class="animate-in">Showcase of my recent work and contributions</p>
+        </div>
+    </section>
+    
+    <div class="container">
+        <section id="projects" class="content">
+            <div class="project animate-in">
+                <h3>Portfolio Website</h3>
+                <p>A responsive portfolio website built with HTML, CSS, and JavaScript.</p>
+                <button class="show-details">Details</button>
+                <div class="project-details">
+                    <p>This project will showcase my skills in front-end development, modern responsive design, and modern CSS techniques. Features include smooth transistion animations, a mobile-friendly approach, and future accessibility considerations.</p>
+                    <p>Technologies used: HTML5, CSS3, JavaScript, Git</p>
+                    <p><a href="https://github.com/jvalenteros/jvalenteros.github.io/tree/main">GitHub Repository</a></p>
+                </div>
+            </div>
+            
+            <div class="project animate-in">
+                <h3>Password Strength Checker</h3>
+                <p>A simple application written in Bash script that evaluates the strength of a given password based on various criterias</p>
+                <div class="project-tags">
+                    <span class="tag">Bash</span>
+                    <span class="tag">Security</span>
+                    <span class="tag">Command-line</span>
+                </div>
+                <div class="collaborator">
+                    In Collaboration with <a href="https://github.com/MichaelDriguez" target="_blank">Michael Rodriguez</a>
+                </div>
+                <button class="show-details">Details</button>
+                <div class="project-details">
+                    <p>This collaborative project demonstrates our proficiency in Bash scripting and understanding of basic security principles. The bash script will analyze passwords for length, uses of different characters, and common patterns to provide a strength rating.</p>
+                    <p>Key features:</p>
+                    <ul>
+                        <li>The application will check the password length</li>
+                        <li>It will verify the use of uppercase, lowercase, numbers, and special characters</li>
+                        <li>Provides a strength score and recommendation</li>
+                        <li>Implements best practices for secure password handling</li>
+                    </ul>
+                    <p>Technologies used: Bash</p>
+                    <p>My contributions:</p>
+                    <ul>
+                        <li>Implemented the regex check patterns</li>
+                        <li>Collaborated on security best practices implementation</li>
+                    </ul>
+                    <p><a href="https://github.com/MichaelDriguez/password-strength-checker">GitHub Repository</a></p>
+                </div>
+            </div>
+  
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Johann Valenteros. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // highlights active nav links
+        document.querySelectorAll('nav a').forEach(link => {
+            if (link.href === window.location.href) {
+                link.classList.add('active');
+            }
+        });
+        
+        // changes header background when scrolling
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+            } else {
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+            }
+        });
+        
+        // animated elements on scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.animate-in').forEach(element => {
+            observer.observe(element);
+        });
+        
+        // toggle the project details (kinda stole this)
+        document.querySelectorAll('.show-details').forEach(button => {
+            button.addEventListener('click', () => {
+                const details = button.nextElementSibling;
+                details.classList.toggle('show');
+                button.textContent = details.classList.contains('show') ? 'Hide Details' : 'Details';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -244,36 +244,6 @@ footer {
     margin-bottom: 8px;
 }
 
-/* Social link styles */
-.social-links {
-    margin-top: 30px;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-.social-link {
-    display: inline-flex;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: var(--apple-blue);
-    color: white;
-    text-decoration: none;
-    border-radius: 20px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.social-link:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px);
-}
-
-.social-link img {
-    width: 24px;
-    height: 24px;
-    margin-right: 10px;
-}
-
 /* Skill styles */
 .skill-list {
     display: flex;

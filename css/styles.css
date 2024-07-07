@@ -1,5 +1,4 @@
 /* styles.css */
-
 :root {
     --apple-blue: #007AFF;
     --apple-gray: #F5F5F7;
@@ -24,6 +23,8 @@
     --secondary-bg: #CCE5FF;
 }
 
+/* global styles */
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     line-height: 1.47059;
@@ -42,6 +43,8 @@ body {
     margin: 0 auto;
     padding: 0 22px;
 }
+
+/* header styles */
 
 header {
     background-color: rgba(255, 255, 255, 0.8);
@@ -112,6 +115,131 @@ p {
     margin-bottom: 20px;
 }
 
+/* theme selector styles */
+.theme-select {
+    position: relative;
+    z-index: 1000;
+}
+
+#theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 24px;
+    width: 30px;
+    padding: 0;
+    position: relative;
+}
+
+#theme-toggle span {
+    background-color: var(--text);
+    border-radius: 3px;
+    height: 3px;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+#theme-toggle:hover span {
+    background-color: var(--accent);
+}
+
+#theme-toggle.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+#theme-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+#theme-toggle.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+#theme-menu {
+    background-color: var(--background);
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: none;
+    list-style-type: none;
+    margin: 0;
+    padding: 10px;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    min-width: 120px;
+}
+
+#theme-menu.show {
+    display: block;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.theme-option {
+    background: none;
+    border: none;
+    color: var(--text);
+    cursor: pointer;
+    font-size: 14px;
+    padding: 8px 12px;
+    text-align: left;
+    width: 100%;
+    transition: background-color 0.2s ease;
+    border-radius: 4px;
+}
+
+.theme-option:hover {
+    background-color: var(--secondary-bg);
+    color: var(--accent);
+}
+
+/* responsive design for smaller screens (mobile) */
+@media (max-width: 768px) {
+    .theme-select {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+    }
+
+    #theme-menu {
+        right: -10px;
+    }
+}
+
+/* ensures that the header can accommodate the theme selector */
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+nav ul {
+    display: flex;
+    gap: 20px;
+}
+
+/* styling adjustments for the active theme */
+.theme-option[data-theme="light"] { background-color: #f0f0f0; }
+.theme-option[data-theme="dark"] { background-color: #333; color: #fff; }
+.theme-option[data-theme="blue"] { background-color: #e6f2ff; }
+
+body[data-theme="light"] .theme-option[data-theme="light"],
+body[data-theme="dark"] .theme-option[data-theme="dark"],
+body[data-theme="blue"] .theme-option[data-theme="blue"] {
+    font-weight: bold;
+    color: var(--accent);
+}
+
+/* content styles */
 .hero {
     padding-top: 128px;
     padding-bottom: 64px;

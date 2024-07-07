@@ -14,6 +14,7 @@
     --text: #F5F5F7;
     --accent: #0A84FF;
     --secondary-bg: #2C2C2E;
+    --secondary-tag-bg: #39393A;
     --header-bg: rgba(29, 29, 31, 0.8);
     --card-bg: #2C2C2E;
     --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
@@ -255,7 +256,7 @@ p {
 
 .collaborator {
     display: inline-block;
-    background-color: var(--secondary-bg);
+    background-color: var(--secondary-tag-bg);
     padding: 8px 15px;
     border-radius: 15px;
     font-size: 14px;
@@ -284,7 +285,7 @@ p {
 
 .tag {
     display: inline-block;
-    background-color: var(--secondary-bg);
+    background-color: var(--secondary-tag-bg);
     color: var(--text);
     padding: 5px 10px;
     border-radius: 12px;
@@ -302,7 +303,7 @@ p {
 }
 
 .skill-item {
-    background-color: var(--secondary-bg);
+    background-color: var(--secondary-tag-bg);
     color: var(--text);
     padding: 8px 16px;
     border-radius: 20px;

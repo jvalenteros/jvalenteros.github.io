@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Name - About Me</title>
     <link rel="stylesheet" href="css/styles.css">
+    <script src="js/theme-switcher.js" defer></script>
 </head>
 <body>
     <header>
@@ -17,6 +18,18 @@
                     <li><a href="transcripts.html">Transcripts</a></li>
                 </ul>
             </nav>
+            <div class="theme-select">
+                <button id="theme-toggle" aria-label="Toggle theme menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul id="theme-menu">
+                    <li><button class="theme-option" data-theme="light">Light</button></li>
+                    <li><button class="theme-option" data-theme="dark">Dark</button></li>
+                    <li><button class="theme-option" data-theme="blue">Blue</button></li>
+                </ul>
+            </div>
         </div>
     </header>
     

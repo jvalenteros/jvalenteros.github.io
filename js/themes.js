@@ -1,32 +1,48 @@
-<script>
+/* rewrite 7/6/2024 11:36 PM CST */
+document.addEventListener('DOMContentLoaded', (event) => {
     const themeToggle = document.getElementById('theme-toggle');
-    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    const themeMenu = document.getElementById('theme-menu');
+    const themeOptions = document.querySelectorAll('.theme-option');
 
-    function setTheme(theme) {
-        document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
-    }
-
-    function toggleTheme() {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        setTheme(newTheme);
-    }
-
-    // sets the initial theme
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-        setTheme(savedTheme);
-    } else if (prefersDarkScheme.matches) {
-        setTheme('dark');
-    }
-
-    // adds an event listener for theme toggle button
-    themeToggle.addEventListener('click', toggleTheme);
-
-    // adds an event listener for system theme changes
-    prefersDarkScheme.addListener((e) => {
-        const newTheme = e.matches ? 'dark' : 'light';
-        setTheme(newTheme);
+    // toggles theme menu and hamburger icon
+    themeToggle.addEventListener('click', () => {
+        themeMenu.classList.toggle('show');
+        themeToggle.classList.toggle('active');
     });
-</script>
+
+    // closes theme menu when clicking outside
+    document.addEventListener('click', (event) => {
+        if (!themeToggle.contains(event.target) && !themeMenu.contains(event.target)) {
+            themeMenu.classList.remove('show');
+            themeToggle.classList.remove('active');
+        }
+    });
+
+    // applies selected theme
+    themeOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            const selectedTheme = option.getAttribute('data-theme');
+            document.body.setAttribute('data-theme', selectedTheme);
+            localStorage.setItem('theme', selectedTheme);
+            themeMenu.classList.remove('show');
+            themeToggle.classList.remove('active');
+            updateActiveThemeOption(selectedTheme);
+        });
+    });
+
+    // applies saved theme on page load
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.body.setAttribute('data-theme', savedTheme);
+    updateActiveThemeOption(savedTheme);
+
+    // function to update the active theme option
+    function updateActiveThemeOption(theme) {
+        themeOptions.forEach(option => {
+            if (option.getAttribute('data-theme') === theme) {
+                option.classList.add('active');
+            } else {
+                option.classList.remove('active');
+            }
+        });
+    }
+});

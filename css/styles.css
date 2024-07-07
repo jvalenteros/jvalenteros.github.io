@@ -12,7 +12,7 @@
 [data-theme="dark"] {
     --background: #1D1D1F;
     --text: #F5F5F7;
-    --accent: #0A84FF;
+    --accent: #cccccc;
     --secondary-bg: #2C2C2E;
     --secondary-tag-bg: #39393A;
     --header-bg: rgba(29, 29, 31, 0.8);

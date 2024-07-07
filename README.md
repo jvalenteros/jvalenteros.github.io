@@ -8,7 +8,7 @@ My website's UI theme and styling is inspired by Apple aesthetics, and showcases
 
 - HTML5
 - CSS3 (with custom properties and flexbox)
-- Vanilla JavaScript
+- JavaScript
 
 ## License
 

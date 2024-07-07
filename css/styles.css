@@ -228,8 +228,8 @@ nav ul {
 }
 
 /* styling adjustments for the active theme */
-.theme-option[data-theme="light"] { background-color: #000000; }
-.theme-option[data-theme="dark"] { background-color: #ffffff; }
+.theme-option[data-theme="light"] { background-color: #f0f0f0; }
+.theme-option[data-theme="dark"] { background-color: #333; color: #fff; }
 .theme-option[data-theme="blue"] { background-color: #e6f2ff; }
 
 body[data-theme="light"] .theme-option[data-theme="light"],

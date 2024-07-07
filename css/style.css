@@ -1,4 +1,5 @@
-/* style.css */
+/* styles.css */
+
 :root {
     --apple-blue: #007AFF;
     --apple-gray: #F5F5F7;
@@ -114,6 +115,7 @@ footer {
     text-align: center;
 }
 
+/* Animation styles */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -134,7 +136,7 @@ footer {
 .animate-in:nth-child(2) { animation-delay: 0.2s; }
 .animate-in:nth-child(3) { animation-delay: 0.3s; }
 
-/* Project-specific styles */
+/* Project styles */
 .project {
     background-color: #fff;
     border-radius: 20px;
@@ -224,4 +226,55 @@ footer {
     font-size: 12px;
     margin-right: 8px;
     margin-bottom: 8px;
+}
+
+/* Social link styles */
+.social-links {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: var(--apple-blue);
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.social-link:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.social-link img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+/* Skill styles */
+.skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.skill-item {
+    background-color: var(--apple-gray);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }

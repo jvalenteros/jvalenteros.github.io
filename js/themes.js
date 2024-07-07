@@ -22,18 +22,26 @@ document.addEventListener('DOMContentLoaded', (event) => {
     themeOptions.forEach(option => {
         option.addEventListener('click', () => {
             const selectedTheme = option.getAttribute('data-theme');
-            document.body.setAttribute('data-theme', selectedTheme);
+            applyTheme(selectedTheme);
             localStorage.setItem('theme', selectedTheme);
             themeMenu.classList.remove('show');
             themeToggle.classList.remove('active');
-            updateActiveThemeOption(selectedTheme);
         });
     });
 
     // applies saved theme on page load
     const savedTheme = localStorage.getItem('theme') || 'light';
-    document.body.setAttribute('data-theme', savedTheme);
-    updateActiveThemeOption(savedTheme);
+    applyTheme(savedTheme);
+
+    // function to apply theme
+    function applyTheme(theme) {
+        document.body.setAttribute('data-theme', theme);
+        updateActiveThemeOption(theme);
+        // forces a repaint to ensure all styles are updated
+        document.body.style.display = 'none';
+        document.body.offsetHeight; // Trigger a reflow
+        document.body.style.display = '';
+    }
 
     // function to update the active theme option
     function updateActiveThemeOption(theme) {

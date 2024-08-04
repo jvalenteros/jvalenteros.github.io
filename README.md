@@ -2,13 +2,13 @@
 
 This project will showcase my skills, projects, and academic achievements in a clean, responsive, and interactive format.
 
-My website's UI theme and styling is inspired by Apple aesthetics, and showcases elements of modern responsive design, and CSS techniques.
+My website's UI theme and styling is inspired by Apple HIG guidelines, and showcases elements of modern responsive design, and CSS techniques.
 
 ## Languages Used
 
 - HTML5
 - CSS3 (with custom properties and flexbox)
-- JavaScript
+- Vanilla JavaScript
 
 ## License
 

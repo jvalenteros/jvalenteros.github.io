@@ -1,89 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - About Me</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <script src="js/themes.js" defer></script>
+    <title>Johann Valenteros - About Me</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#007AFF',
+                    },
+                },
+            },
+        }
+    </script>
 </head>
-<body>
-    <header>
-        <div class="container">
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about-me.html" class="active">About Me</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="transcripts.html">Transcripts</a></li>
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <header class="fixed top-0 left-0 right-0 bg-white dark:bg-gray-900 bg-opacity-80 dark:bg-opacity-80 backdrop-blur-md z-50">
+        <div class="container mx-auto px-6 py-4">
+            <nav class="flex justify-center items-center">
+                <ul class="flex space-x-6">
+                    <li><a href="index.html" class="text-sm hover:text-primary dark:hover:text-gray-300 transition-colors">Home</a></li>
+                    <li><a href="about-me.html" class="text-sm hover:text-primary dark:hover:text-gray-300 transition-colors">About Me</a></li>
+                    <li><a href="projects.html" class="text-sm hover:text-primary dark:hover:text-gray-300 transition-colors">Projects</a></li>
+                    <li><a href="transcripts.html" class="text-sm hover:text-primary dark:hover:text-gray-300 transition-colors">Transcripts</a></li>
                 </ul>
             </nav>
-            <div class="theme-select">
-                <button id="theme-toggle" aria-label="Toggle theme">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-                </button>
-            </div>
+            <button id="theme-toggle" class="absolute right-6 top-1/2 transform -translate-y-1/2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+            </button>
         </div>
     </header>
-    
-    <section class="hero">
-        <div class="container">
-            <h1 class="animate-in">Johann Valenteros</h1>
-            <p class="animate-in">Cybersecurity AAS | OSS Enthusiast</p>
-        </div>
-    </section>
-    
-    <div class="container">
-        <section id="about" class="content">
-            <h2 class="animate-in">About Me</h2>
-            <p class="animate-in">I am Johann Valenteros, and I'm an amateur developer with experience in Python, Java, JS, HTML, CSS and Lua. I like creating stuff and contributing to open-source projects.</p>
-            <h3 class="animate-in">Skills</h3>
-            <div class="skill-list">
-                <span class="skill-item animate-in">Java</span>
-                <span class="skill-item animate-in">Javascript</span>
-                <span class="skill-item animate-in">Lua</span>
-                <span class="skill-item animate-in">Python</span>
-                <span class="skill-item animate-in">HTML</span>
-                <span class="skill-item animate-in">CSS</span>
-                <span class="skill-item animate-in">Git</span>
+
+    <main>
+        <section class="bg-gray-100 dark:bg-gray-800 py-20 mt-16">
+            <div class="container mx-auto px-6">
+                <h1 class="text-4xl md:text-5xl font-bold mb-2 animate-[fadeInUp_0.6s_ease-out]">Johann Valenteros</h1>
+                <p class="text-xl mb-8 animate-[fadeInUp_0.6s_ease-out_0.1s]">Cybersecurity AAS | OSS Enthusiast</p>
             </div>
         </section>
-    </div>
-    
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Johann Valenteros. All rights reserved.</p>
+
+        <section class="py-16">
+            <div class="container mx-auto px-6">
+                <h2 class="text-2xl font-semibold mb-6 animate-[fadeInUp_0.6s_ease-out_0.2s]">About Me</h2>
+                <p class="mb-4 animate-[fadeInUp_0.6s_ease-out_0.3s]">I am Johann Valenteros, and I'm an amateur developer with experience in Python, Java, JS, HTML, CSS and Lua. I like creating stuff and contributing to open-source projects.</p>
+                
+                <h3 class="text-xl font-semibold mt-8 mb-4 animate-[fadeInUp_0.6s_ease-out_0.4s]">Skills</h3>
+                <div class="flex flex-wrap gap-2 animate-[fadeInUp_0.6s_ease-out_0.5s]">
+                    <span class="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">Java</span>
+                    <span class="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">Javascript</span>
+                    <span class="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">Lua</span>
+                    <span class="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">Python</span>
+                    <span class="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">HTML</span>
+                    <span class="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">CSS</span>
+                    <span class="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">Git</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-100 dark:bg-gray-800 py-4">
+        <div class="container mx-auto px-6 text-center text-sm">
+            © 2024 Johann Valenteros. All rights reserved.
         </div>
     </footer>
-    
-    <script>
-        // Highlight active nav link
-        document.querySelectorAll('nav a').forEach(link => {
-            if (link.href === window.location.href) {
-                link.classList.add('active');
-            }
-        });
-        
-        // Animate elements on scroll
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-in');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-        
-        document.querySelectorAll('.animate-in').forEach(element => {
-            observer.observe(element);
-        });
-    </script>
 </body>
 </html>

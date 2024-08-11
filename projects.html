@@ -1,161 +1,173 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Johann Valenteros - Projects</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <script src="js/themes.js" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#007AFF',
+                    },
+                },
+            },
+        }
+    </script>
 </head>
-<body>
-    <header>
-        <div class="container">
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about-me.html">About Me</a></li>
-                    <li><a href="projects.html" class="active">Projects</a></li>
-                    <li><a href="transcripts.html">Transcripts</a></li>
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <header class="fixed top-0 left-0 right-0 bg-white dark:bg-gray-900 bg-opacity-80 dark:bg-opacity-80 backdrop-blur-md z-50">
+        <div class="container mx-auto px-6 py-4">
+            <nav class="flex justify-center items-center">
+                <ul class="flex space-x-6">
+                    <li><a href="index.html" class="text-sm hover:text-primary dark:hover:text-gray-300 transition-colors">Home</a></li>
+                    <li><a href="about-me.html" class="text-sm hover:text-primary dark:hover:text-gray-300 transition-colors">About Me</a></li>
+                    <li><a href="projects.html" class="text-sm hover:text-primary dark:hover:text-gray-300 transition-colors">Projects</a></li>
+                    <li><a href="transcripts.html" class="text-sm hover:text-primary dark:hover:text-gray-300 transition-colors">Transcripts</a></li>
                 </ul>
             </nav>
-            <div class="theme-select">
-                <button id="theme-toggle" aria-label="Toggle theme">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-                </button>
-            </div>
+            <button id="theme-toggle" class="absolute right-6 top-1/2 transform -translate-y-1/2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+            </button>
         </div>
     </header>
-    
-    <section class="hero">
-        <div class="container">
-            <h1 class="animate-in">Projects</h1>
-            <p class="animate-in">Showcase of my recent work and contributions</p>
-        </div>
-    </section>
-    
-    <div class="container">
-        <section id="projects" class="content">
-            <div class="project animate-in">
-                <h3>Portfolio Website</h3>
-                <p>A responsive portfolio website built with HTML, CSS, and JavaScript.</p>
-                <div class="project-tags">
-                    <span class="tag">HTML</span>
-                    <span class="tag">CSS</span>
-                    <span class="tag">Javascript</span>
-                </div>
-                <button class="show-details">Details</button>
-                <div class="project-details">
-                    <p>This project will showcase my skills in front-end development, modern responsive design, and modern CSS techniques. Features include smooth transition animations, a mobile-friendly approach, and future accessibility considerations.
-                    <p><a href="https://github.com/jvalenteros/jvalenteros.github.io/tree/main">GitHub Repository</a></p>
-                </div>
-            </div>
-            
-            <div class="project animate-in">
-                <h3>Password Strength Checker</h3>
-                <p>A simple application written in Bash script that evaluates the strength of a given password based on various criteria.</p>
-                <div class="project-tags">
-                    <span class="tag">Bash</span>
-                    <span class="tag">Security</span>
-                    <span class="tag">Command-line</span>
-                </div>
-                <div class="collaborator">
-                    In Collaboration with <a href="https://github.com/MichaelDriguez" target="_blank">Michael Rodriguez</a>
-                </div>
-                <button class="show-details">Details</button>
-                <div class="project-details">
-                    <p>This collaborative project demonstrates our proficiency in Bash scripting and understanding of basic security principles. The bash script will analyze passwords for length, uses of different characters, and common patterns to provide a strength rating.</p>
-                    <p>Key features:</p>
-                    <ul>
-                        <li>The application will check the password length</li>
-                        <li>It will verify the use of uppercase, lowercase, numbers, and special characters</li>
-                        <li>Provides a strength score and recommendation</li>
-                        <li>Implements best practices for secure password handling</li>
-                    </ul>
-                    <p>My contributions:</p>
-                    <ul>
-                        <li>Implemented the regex check patterns</li>
-                        <li>Collaborated on security best practices implementation</li>
-                    </ul>
-                    <p><a href="https://github.com/MichaelDriguez/password-strength-checker">GitHub Repository</a></p>
-                </div>
-            </div>
 
-            <div class="project animate-in">
-                <h3>Simple Sketch</h3>
-                <p>A simple, minimalistic drawing application with download function, color wheel, redo and undo features, clear button, built with HTML, CSS, and JavaScript.</p>
-                <div class="project-tags">
-                    <span class="tag">HTML5</span>
-                    <span class="tag">CSS</span>
-                    <span class="tag">Javascript</span>
-                </div>
-                <button class="show-details">Details</button>
-                <div class="project-details">
-                    <p>This project showcases my ability to build a simple, minimalistic drawing application with download function, color wheel, redo and undo features, clear button, all built with HTML, CSS, and JavaScript.</p>
-                    <p><a href="https://github.com/jvalenteros/simplesketch">GitHub Repository</a></p>
-                </div>
+    <main class="pt-20">
+        <section class="bg-gray-100 dark:bg-gray-800 py-20">
+            <div class="container mx-auto px-6">
+                <h1 class="text-4xl md:text-5xl font-bold mb-2 animate-[fadeInUp_0.6s_ease-out]">Projects</h1>
+                <p class="text-xl mb-8 animate-[fadeInUp_0.6s_ease-out_0.1s]">Showcase of my recent work and contributions</p>
             </div>
-
-            <div class="project animate-in">
-                <h3>Easy Calculator</h3>
-                <p>A hypersimple, minimalistic calculator application designed with HTML5, CSS, and JavaScript. Designed with Apple Human Interface Guidelines in mind.</p>
-                <div class="project-tags">
-                    <span class="tag">HTML5</span>
-                    <span class="tag">CSS</span>
-                    <span class="tag">Javascript</span>
-                </div>
-                <button class="show-details">Details</button>
-                <div class="project-details">
-                    <p>This project will showcase my ability to build a simple, minimalistic calculator, and also keeping the stylesheet in line with Apple Human Interface Guidelines.</p>
-                    <p><a href="https://github.com/jvalenteros/easy-calculator">GitHub Repository</a></p>
-                </div>
-            </div>
-  
         </section>
-    </div>
-    
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Johann Valenteros. All rights reserved.</p>
+
+        <section class="py-16">
+            <div class="container mx-auto px-6">
+                <div class="space-y-12">
+                    <!-- Portfolio Website Project -->
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg animate-[fadeInUp_0.6s_ease-out]">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-2xl font-semibold text-primary mb-2">Portfolio Website</h3>
+                            <a href="https://github.com/jvalenteros/jvalenteros.github.io/tree/main" class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 transition-colors duration-300" target="_blank" aria-label="GitHub repository">
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                        </div>
+                        <p class="mb-4">A responsive portfolio website built with HTML, CSS, and JavaScript.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">HTML</span>
+                            <span class="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">CSS</span>
+                            <span class="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">Javascript</span>
+                        </div>
+                        <button class="bg-primary text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300 ease-in-out" onclick="toggleDetails(this)">Show Details</button>
+                        <div class="project-details hidden mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                            <p class="mb-4">This project will showcase my skills in front-end development, modern responsive design, and modern CSS techniques. Features include smooth transition animations, a mobile-friendly approach, and future accessibility considerations.</p>
+                        </div>
+                    </div>
+
+                    <!-- Password Strength Checker Project -->
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg animate-[fadeInUp_0.6s_ease-out_0.1s]">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-2xl font-semibold text-primary mb-2">Password Strength Checker</h3>
+                            <a href="https://github.com/MichaelDriguez/password-strength-checker" class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 transition-colors duration-300" target="_blank" aria-label="GitHub repository">
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                        </div>
+                        <p class="mb-4">A simple application written in Bash script that evaluates the strength of a given password based on various criteria.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">Bash</span>
+                            <span class="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">Security</span>
+                            <span class="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">Command-line</span>
+                        </div>
+                        <div class="mb-4 text-sm italic">In Collaboration with <a href="https://github.com/MichaelDriguez" class="text-primary hover:underline" target="_blank">Michael Rodriguez</a></div>
+                        <button class="bg-primary text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300 ease-in-out" onclick="toggleDetails(this)">Show Details</button>
+                        <div class="project-details hidden mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                            <p class="mb-4">This collaborative project demonstrates our proficiency in Bash scripting and understanding of basic security principles. The bash script will analyze passwords for length, uses of different characters, and common patterns to provide a strength rating.</p>
+                            <h4 class="font-semibold mb-2">Key features:</h4>
+                            <ul class="list-disc list-inside mb-4">
+                                <li>The application will check the password length</li>
+                                <li>It will verify the use of uppercase, lowercase, numbers, and special characters</li>
+                                <li>Provides a strength score and recommendation</li>
+                                <li>Implements best practices for secure password handling</li>
+                            </ul>
+                            <h4 class="font-semibold mb-2">My contributions:</h4>
+                            <ul class="list-disc list-inside mb-4">
+                                <li>Implemented the regex check patterns</li>
+                                <li>Collaborated on security best practices implementation</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg animate-[fadeInUp_0.6s_ease-out_0.2s]">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-2xl font-semibold text-primary mb-2">Simple Sketch</h3>
+                            <a href="https://github.com/jvalenteros/simplesketch" class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 transition-colors duration-300" target="_blank" aria-label="GitHub repository">
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                        </div>
+                        <p class="mb-4">A simple, minimalistic drawing application with download function, color wheel, redo and undo features, clear button, built with HTML, CSS, and JavaScript.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">HTML5</span>
+                            <span class="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">CSS</span>
+                            <span class="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">Javascript</span>
+                        </div>
+                        <button class="bg-primary text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300 ease-in-out" onclick="toggleDetails(this)">Show Details</button>
+                        <div class="project-details hidden mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                            <p class="mb-4">This project showcases my ability to build a simple, minimalistic drawing application with download function, color wheel, redo and undo features, clear button, all built with HTML, CSS, and JavaScript.</p>
+                        </div>
+                    </div>
+
+                    <!-- Easy Calculator Project -->
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg animate-[fadeInUp_0.6s_ease-out_0.3s]">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-2xl font-semibold text-primary mb-2">Easy Calculator</h3>
+                            <a href="https://github.com/jvalenteros/easy-calculator" class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 transition-colors duration-300" target="_blank" aria-label="GitHub repository">
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                        </div>
+                        <p class="mb-4">A hypersimple, minimalistic calculator application designed with HTML5, CSS, and JavaScript. Designed with Apple Human Interface Guidelines in mind.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">HTML5</span>
+                            <span class="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">CSS</span>
+                            <span class="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">Javascript</span>
+                        </div>
+                        <button class="bg-primary text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300 ease-in-out" onclick="toggleDetails(this)">Show Details</button>
+                        <div class="project-details hidden mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                            <p class="mb-4">This project will showcase my ability to build a simple, minimalistic calculator, and also keeping the stylesheet in line with Apple Human Interface Guidelines.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-100 dark:bg-gray-800 py-4">
+        <div class="container mx-auto px-6 text-center text-sm">
+            2024
         </div>
     </footer>
-    
+
     <script>
-        // highlights active nav links
-        document.querySelectorAll('nav a').forEach(link => {
-            if (link.href === window.location.href) {
-                link.classList.add('active');
-            }
-        });
-        
-        // animated elements on scroll
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-in');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-        
-        document.querySelectorAll('.animate-in').forEach(element => {
-            observer.observe(element);
-        });
-        
-        // toggle the project details (kinda stole this)
-        document.querySelectorAll('.show-details').forEach(button => {
-            button.addEventListener('click', () => {
-                const details = button.nextElementSibling;
-                details.classList.toggle('show');
-                button.textContent = details.classList.contains('show') ? 'Hide Details' : 'Details';
-            });
-        });
+        function toggleDetails(button) {
+            const details = button.nextElementSibling;
+            details.classList.toggle('hidden');
+            button.textContent = details.classList.contains('hidden') ? 'Show Details' : 'Hide Details';
+        }
     </script>
 </body>
 </html>
+                                    

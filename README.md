@@ -15,7 +15,7 @@ A hyperminimalist portfolio website showcasing my skills, projects, and backgrou
 - **Interactive UI**: Subtle animations and transitions enhance user experience
 - **Project Showcase**: Detailed project cards with expandable information
 - **Skills Section**: Visual representation of technical and soft skills
-- **Academic Transcripts**: Educational background and coursework details
+- **Academic Transcripts**: Academic background and coursework details
 - **Contact Information**: Multiple ways to connect professionally
 
 ## 🛠️ Technologies

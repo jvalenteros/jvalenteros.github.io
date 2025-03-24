@@ -1,0 +1,128 @@
+/* Transcripts Section Styling */
+
+.transcript-title {
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-sm);
+  border-bottom: var(--border-width) solid #333;
+}
+
+.transcript-title[data-color="cyan"] {
+  color: var(--color-cyan);
+}
+
+.transcript-item {
+  margin-bottom: var(--space-xl);
+  padding: var(--space-md);
+  border: var(--border-width) solid #333;
+  border-radius: var(--border-radius);
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.3s ease;
+}
+
+.transcript-item:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-white);
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+}
+
+.transcript-degree {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: var(--space-xs);
+  color: var(--color-text);
+}
+
+.transcript-school {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  margin-bottom: var(--space-md);
+  color: var(--color-text-dim);
+}
+
+.transcript-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-md);
+  padding: var(--space-sm) 0;
+  border-top: var(--border-width) solid #333;
+  border-bottom: var(--border-width) solid #333;
+}
+
+.transcript-details p {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-text-dim);
+}
+
+.transcript-courses {
+  margin-top: var(--space-md);
+}
+
+.courses-title {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 400;
+  margin-bottom: var(--space-sm);
+  color: var(--color-white);
+}
+
+.courses-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.courses-list li {
+  position: relative;
+  padding-left: var(--space-lg);
+  margin-bottom: var(--space-xs);
+  color: var(--color-text-dim);
+  font-size: 0.9rem;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.courses-list li::before {
+  content: ">";
+  position: absolute;
+  left: 0;
+  font-family: var(--font-mono);
+  color: var(--color-white);
+  opacity: 0.7;
+}
+
+.courses-list li:hover {
+  transform: translateX(3px);
+  color: var(--color-text);
+}
+
+/* Add cyan glow effect on hover for transcript items */
+.transcript-item:hover .courses-list li::before {
+  text-shadow: 0 0 8px rgb(255, 255, 255);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .transcript-details {
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+}
+
+@media (max-width: 480px) {
+  .transcript-title {
+    font-size: 1rem;
+  }
+  
+  .transcript-degree {
+    font-size: 0.9rem;
+  }
+  
+  .courses-list li {
+    padding-left: var(--space-md);
+  }
+}

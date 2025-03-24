@@ -56,12 +56,12 @@ jvalenteros-portfolio/
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/jvalenteros/jvalenteros-portfolio.git
+   git clone https://github.com/jvalenteros/jvalenteros.github.io
    ```
 
 2. Navigate to the project directory:
    ```bash
-   cd jvalenteros-portfolio
+   cd jvalenteros.github.io
    ```
 
 3. Open `index.html` in your browser:

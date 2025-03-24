@@ -6,7 +6,7 @@
 [![Responsive](https://img.shields.io/badge/Responsive-Design-green?style=for-the-badge)](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design)
 [![Accessibility](https://img.shields.io/badge/Accessibility-Focused-blue?style=for-the-badge)](https://www.w3.org/WAI/fundamentals/accessibility-intro/)
 
-A hyperminimalist terminal-esque portfolio website showcasing my skills, projects, and professional background in cybersecurity and software development.
+A hyperminimalist portfolio website showcasing my skills, projects, and background in cybersecurity and software development.
 
 ## ✨ Features
 
@@ -75,48 +75,12 @@ jvalenteros-portfolio/
    # On Linux
    xdg-open index.html
    ```
-
-## 🌟 Sections
-
-### Home
-Introduction and social links with a clean, minimalist design.
-
-### About
-Brief personal introduction with statistics about GitHub contributions, projects, and repositories.
-
-### Projects
-Showcase of personal and collaborative projects with detailed information, including:
-- Portfolio Website
-- Password Strength Checker
-- Encryption App
-- Password Generator Web
-- Ciphers
-
-### Skills
-Comprehensive list of technical and soft skills categorized by:
-- Development (HTML/CSS, JavaScript, Java, Python, Node.js, Git, Bash)
-- Design (UI/UX, Tailwind CSS, Photoshop, Illustrator, Typography, Color Theory)
-- Other (Project Management, Time Management, Audio Production, Security, Responsive Design, Accessibility)
-
-### Transcripts
-Academic background including:
-- Bachelor's degree in Cybersecurity (in progress)
-- Associate's degree in Applied Science - Cybersecurity
-- Relevant coursework and certifications
-
-### Contact
-Multiple ways to connect professionally through:
-- GitHub
-- LinkedIn
-- Twitter
-- Email
-
 ## 🔮 Future Enhancements
 
 - [ ] Dark/light theme toggle with persistent preferences
 - [ ] Interactive terminal command simulation
 - [ ] Portfolio filtering options
-- [ ] Blog section for technical articles
+- [ ] Blog section for personal articles
 - [ ] Integration with GitHub API for real-time stats
 
 ## 📝 License

@@ -32,7 +32,7 @@ A hyperminimalist portfolio website showcasing my skills, projects, and backgrou
 ## 🔧 Project Structure
 
 ```
-jvalenteros-portfolio/
+jvalenteros.github.io/
 ├── index.html              # Main HTML file
 ├── css/                    # CSS stylesheets
 │   ├── style.css           # Main stylesheet

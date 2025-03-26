@@ -89,7 +89,7 @@
 }
 
 .project-details.expanded {
-  max-height: 1000px;
+  max-height: 1000px; /* Adjust as needed */
   opacity: 1;
   padding-top: var(--space-md);
   margin-top: var(--space-md);
@@ -176,9 +176,9 @@
 /* Responsive Adjustments */
 @media (max-width: 768px) {
   .project-details.expanded {
-    max-height: 1200px;
+    max-height: 1200px; /* Increased max-height for tabs */
   }
-  
+
   .projects-grid {
     gap: clamp(1rem, 2.5vw, 1.5rem);
     margin-inline: clamp(5%, 5vw, 8%);
@@ -187,14 +187,14 @@
 
 @media (max-width: 480px) {
   .project-details.expanded {
-    max-height: 1500px;
+    max-height: 1800px; /* Further increased max-height */
   }
-  
+
   .projects-grid {
     grid-template-columns: 1fr;
     margin-inline: 5%;
   }
-  
+
   .details-list li {
     padding-left: var(--space-md);
   }
@@ -220,4 +220,74 @@
   -webkit-transform: translateY(-3px);
   -moz-transform: translateY(-3px);
   transform: translateY(-3px);
+}
+
+/* --- New Tab Styles --- */
+
+.details-tabs {
+  display: flex;
+  border-bottom: var(--border-width) solid #333;
+  margin-bottom: var(--space-md);
+}
+
+.details-tab {
+  padding: var(--space-sm) var(--space-md);
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--color-text-dim);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: color 0.2s ease, border-bottom-color 0.2s ease;
+  margin-bottom: -1px; /* Overlap border */
+}
+
+.details-tab:hover {
+  color: var(--color-text);
+}
+
+.details-tab.active {
+  color: var(--color-text);
+  border-bottom-color: var(--color-green); /* Match project color or use a neutral one */
+  font-weight: 500;
+}
+
+.details-content {
+  /* No specific styles needed for the container itself */
+}
+
+.details-panel {
+  display: none; /* Hide panels by default */
+}
+
+.details-panel.active {
+  display: block; /* Show the active panel */
+}
+
+/* Adjust max-height transition for tabbed content */
+.project-details.expanded {
+  /* Use a larger max-height to accommodate potentially taller tab content */
+  /* Consider using 'auto' height if transitions aren't critical, */
+  /* but 'max-height' transition works better visually */
+   max-height: 2000px; /* Increased further */
+}
+
+@media (max-width: 768px) {
+  .project-details.expanded {
+    max-height: 2500px;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-details.expanded {
+    max-height: 3000px;
+  }
+  .details-tabs {
+    flex-wrap: wrap; /* Allow tabs to wrap on small screens if needed */
+  }
+  .details-tab {
+    font-size: 0.85rem;
+    padding: var(--space-xs) var(--space-sm);
+  }
 }

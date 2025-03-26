@@ -334,34 +334,74 @@
                             <span class="toggle-icon">▼</span>
                         </button>
                         <div class="project-details" id="project-gamma-details">
-                            <div class="details-section">
-                                <h3 class="details-title">Overview</h3>
-                                <p>A simple ciphering/deciphering web application system. This project is able to encode and decode texts, and a cohesive visual language that balances technical aesthetics with usability.</p>
+                            <div class="details-tabs">
+                                <button class="details-tab active" data-target="gamma-original">Original (JS + Tailwind)</button>
+                                <button class="details-tab" data-target="gamma-react">React + Vite Version</button>
                             </div>
-                            <div class="details-section">
-                                <h3 class="details-title">Features</h3>
-                                <ul class="details-list">
-                                    <li>Support for multiple ciphers (ROT13, Caesar, Vigenère, etc.)</li>
-                                    <li>Encode and decode functionality for each cipher</li>
-                                    <li>Real-time character and word count</li>
-                                    <li>Clean and responsive user interface built with Tailwind CSS</li>
-                                    <li>Fast and efficient processing with vanilla JavaScript</li>
-                                    <li>Mobile-friendly design</li>
-                                </ul>
-                            </div>
-                            <div class="details-section">
-                                <h3 class="details-title">Supported Ciphers</h3>
-                                <li>ROT13</li>
-                                <li>Caesar Cipher</li>
-                                <li>Vigenère Cipher</li>
-                                <li>More ciphers to be added in the future</li>
-                            </div>
-                            <div class="details-section">
-                                <h3 class="details-title">Implementation</h3>
-                                <p>Designed in HTML5, Javascript and styled with CSS and organized component architecture. Includes documentation for implementation guidelines and usage patterns.</p>
-                            </div>
-                            <div class="project-tags">
-                                <span class="tag"><a target="_blank" rel="noopener noreferrer"  href="https://github.com/MichaelDriguez">In Collaboration with Michael Rodriguez</a></span>
+                            <div class="details-content">
+                                <div class="details-panel active" id="gamma-original">
+                                    <div class="details-section">
+                                        <h3 class="details-title">Overview</h3>
+                                        <p>A versatile web application for encoding and decoding text using various ciphers, originally built with vanilla JavaScript and Tailwind CSS.</p>
+                                    </div>
+                                    <div class="details-section">
+                                        <h3 class="details-title">Features</h3>
+                                        <ul class="details-list">
+                                            <li>Support for multiple ciphers (ROT13, Caesar, Vigenère, etc.)</li>
+                                            <li>Encode and decode functionality for each cipher</li>
+                                            <li>Real-time character and word count</li>
+                                            <li>Clean and responsive user interface built with Tailwind CSS</li>
+                                            <li>Fast and efficient processing with vanilla JavaScript</li>
+                                            <li>Mobile-friendly design</li>
+                                        </ul>
+                                    </div>
+                                    <div class="details-section">
+                                        <h3 class="details-title">Supported Ciphers</h3>
+                                        <ul class="details-list">
+                                            <li>ROT13</li>
+                                            <li>Caesar Cipher</li>
+                                            <li>Vigenère Cipher</li>
+                                            <li>More ciphers planned</li>
+                                        </ul>
+                                    </div>
+                                    <div class="details-section">
+                                        <h3 class="details-title">Implementation</h3>
+                                        <p>Designed in HTML5, Javascript and styled with Tailwind CSS. Follows a component-like structure for organization.</p>
+                                    </div>
+                                    <div class="project-tags">
+                                        <span class="tag"><a target="_blank" rel="noopener noreferrer" href="https://github.com/MichaelDriguez">In Collaboration with Michael Rodriguez</a></span>
+                                    </div>
+                                </div>
+                                <div class="details-panel" id="gamma-react">
+                                    <div class="details-section">
+                                        <h3 class="details-title">Overview (React + Vite)</h3>
+                                        <p>A modern rebuild of the Ciphers application using React and Vite for enhanced development experience and performance. Leverages component-based architecture and modern tooling.</p>
+                                        <p>View the code: <a href="https://github.com/jvalenteros/ciphers/tree/react-vite" target="_blank" rel="noopener noreferrer">React/Vite Branch</a></p>
+                                    </div>
+                                    <div class="details-section">
+                                        <h3 class="details-title">Key Enhancements</h3>
+                                        <ul class="details-list">
+                                            <li>Built with React for modular and reusable UI components</li>
+                                            <li>Utilizes Vite for lightning-fast development server and optimized builds</li>
+                                            <li>Maintains the clean UI with Tailwind CSS integration</li>
+                                            <li>Improved state management using React hooks</li>
+                                            <li>Enhanced developer experience with Hot Module Replacement (HMR)</li>
+                                        </ul>
+                                    </div>
+                                    <div class="details-section">
+                                        <h3 class="details-title">Technology Stack</h3>
+                                        <ul class="details-list">
+                                            <li>React</li>
+                                            <li>Vite</li>
+                                            <li>Tailwind CSS</li>
+                                            <li>JavaScript (ES6+)</li>
+                                        </ul>
+                                    </div>
+                                    <div class="details-section">
+                                        <h3 class="details-title">Implementation Notes</h3>
+                                        <p>This version focuses on modernizing the frontend stack while retaining the core cipher functionalities. The component structure makes future additions and maintenance easier.</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

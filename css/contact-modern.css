@@ -1,6 +1,3 @@
-/* Modern Contact Section Styling */
-
-/* Contact Section Container */
 .contact-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));

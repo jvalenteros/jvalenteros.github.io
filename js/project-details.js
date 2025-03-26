@@ -1,7 +1,4 @@
-// JavaScript for Project Details Expandable Tabs
-
 document.addEventListener('DOMContentLoaded', function() {
-  // Initialize project details functionality
   initProjectDetails();
 });
 
@@ -10,7 +7,6 @@ function initProjectDetails() {
   
   detailsToggles.forEach(toggle => {
     toggle.addEventListener('click', function() {
-      // Get the associated details element
       const detailsId = this.getAttribute('aria-controls');
       const detailsElement = document.getElementById(detailsId);
       
@@ -22,10 +18,10 @@ function initProjectDetails() {
       const toggleText = this.querySelector('.toggle-text');
       toggleText.textContent = isExpanded ? 'View Details' : 'Hide Details';
       
-      // Toggle the expanded class on the details element
+      // Toggles the expanded class on the details element
       detailsElement.classList.toggle('expanded');
       
-      // Scroll into view if expanding
+      // Scrolls into view if expanding
       if (!isExpanded) {
         setTimeout(() => {
           detailsElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -34,7 +30,7 @@ function initProjectDetails() {
     });
   });
   
-  // Add hover effects for GitHub links
+  // Adds hover effect for GitHub links
   const githubLinks = document.querySelectorAll('.github-link');
   
   githubLinks.forEach(link => {

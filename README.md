@@ -29,28 +29,11 @@ A hyperminimalist portfolio website showcasing my skills, projects, and backgrou
   - Responsive grid layouts
   - Modern typography with Google Fonts
 
-## 🔧 Project Structure
-
-```
-jvalenteros.github.io/
-├── index.html              # Main HTML file
-├── css/                    # CSS stylesheets
-│   ├── style.css           # Main stylesheet
-│   ├── contact-modern.css  # Contact section styles
-│   ├── project-details.css # Project details styles
-│   ├── skills-updated.min.css # Skills section styles
-│   └── transcripts.css     # Academic transcript styles
-├── js/                     # JavaScript files
-│   └── project-details.js  # Project details functionality
-└── images/                 # Image assets
-    └── optimized/          # Optimized images
-```
-
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-- A modern web browser (Chrome, Firefox, Safari, Edge)
+- A  web browser (Chrome, Firefox, Safari, Edge)
 
 ### Installation
 
@@ -75,14 +58,7 @@ jvalenteros.github.io/
    # On Linux
    xdg-open index.html
    ```
-## 🔮 Future Enhancements
-
-- [ ] Dark/light theme toggle with persistent preferences
-- [ ] Interactive terminal command simulation
-- [ ] Portfolio filtering options
-- [ ] Blog section for personal articles
-- [ ] Integration with GitHub API for real-time stats
-
+   
 ## 📝 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

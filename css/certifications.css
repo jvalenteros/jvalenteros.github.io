@@ -1,0 +1,50 @@
+/* --- Certifications Section --- */
+
+:root {
+    --yellow: #f1c40f;
+    --yellow-glow: rgba(241, 196, 15, 0.2);
+}
+
+#certifications .section-title[data-color="yellow"] {
+    color: var(--yellow);
+    text-shadow: 0 0 10px var(--yellow-glow);
+}
+
+#certifications .terminal-window {
+    border-color: var(--yellow);
+    box-shadow: 0 0 15px var(--yellow-glow);
+}
+
+#certifications .terminal-header {
+    background-color: var(--yellow);
+}
+
+/* Reusing transcript styles for consistency */
+.transcript-item {
+    margin-bottom: 1.5rem;
+    padding-left: 1rem;
+    border-left: 2px solid var(--yellow);
+}
+
+.transcript-degree {
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.transcript-school {
+    color: var(--text-secondary);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+}
+
+.transcript-details {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+    margin-top: 0.5rem;
+}
+
+.transcript-details p {
+    margin: 0.25rem 0;
+}

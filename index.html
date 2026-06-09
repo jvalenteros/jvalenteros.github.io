@@ -1,616 +1,858 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Johann Valenteros - Digital Portfolio</title>
-    <link rel="stylesheet" href="css/skills-updated.min.css">
-    <link rel="stylesheet" href="css/project-details.css">
-    <link rel="stylesheet" href="css/contact-modern.css">
-    <link rel="stylesheet" href="css/transcripts.css">
-    <link rel="stylesheet" href="css/certifications.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
-    <meta name="description" content="A hyperminimalist portfolio website">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Johann Valenteros</title>
+<meta name="description" content="Johann Valenteros — Cybersecurity and Information Systems. Portfolio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a0a;
+    --fg:#f4f4f4;
+    --muted:#8c8c8c;
+    --faint:#565656;
+    --line:rgba(255,255,255,0.10);
+    --line-strong:rgba(255,255,255,0.22);
+    --ease:cubic-bezier(0.76,0,0.24,1);
+    --ease-out:cubic-bezier(0.16,1,0.3,1);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;scroll-padding-top:6rem;}
+
+  body{
+    font-family:'Inter',system-ui,-apple-system,sans-serif;
+    background:var(--bg);
+    color:var(--fg);
+    line-height:1.6;
+    font-weight:300;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+
+  /* lock scroll until the visitor enters */
+  body:not(.entered){overflow:hidden;height:100vh;}
+
+  a{color:inherit;text-decoration:none;}
+
+  ::selection{background:#f4f4f4;color:#0a0a0a;}
+
+  .wrap{max-width:1080px;margin:0 auto;padding:0 clamp(1.25rem,5vw,3rem);}
+
+  /* ---------- shared name styling (intro + hero share this) ---------- */
+  .bigname{
+    font-weight:200;
+    letter-spacing:-0.035em;
+    line-height:0.95;
+    white-space:nowrap;
+    color:var(--fg);
+  }
+
+  /* ====================== INTRO ====================== */
+  #intro{
+    position:fixed;
+    inset:0;
+    z-index:100;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+  }
+  #introBackdrop{
+    position:absolute;
+    inset:0;
+    background:var(--bg);
+    transition:opacity 0.9s var(--ease);
+  }
+  #intro.leaving #introBackdrop{opacity:0;}
+
+  #introName{
+    position:relative;
+    background:none;
+    border:0;
+    color:var(--fg);
+    cursor:pointer;
+    font-family:inherit;
+    font-size:clamp(2rem,10.5vw,7rem);
+    opacity:0;
+    transform:translateY(18px);
+    transition:transform 0.95s var(--ease), opacity 0.7s ease;
+    will-change:transform;
+    padding:0;
+  }
+  #introName:focus-visible{outline:1px solid var(--line-strong);outline-offset:1.2rem;}
+
+  .intro-cue{
+    position:absolute;
+    bottom:clamp(2rem,7vh,4rem);
+    font-size:0.7rem;
+    letter-spacing:0.42em;
+    text-transform:uppercase;
+    color:var(--faint);
+    opacity:0;
+    transition:opacity 0.6s ease;
+  }
+  .intro-cue::after{
+    content:"";
+    display:block;
+    width:1px;
+    height:1.6rem;
+    margin:0.9rem auto 0;
+    background:var(--faint);
+    animation:cuepulse 2.4s var(--ease) infinite;
+    transform-origin:top;
+  }
+  @keyframes cuepulse{
+    0%,100%{transform:scaleY(0.35);opacity:0.3;}
+    50%{transform:scaleY(1);opacity:1;}
+  }
+  #intro.ready #introName{opacity:1;transform:none;}
+  #intro.ready .intro-cue{opacity:1;transition-delay:0.5s;}
+  #intro.leaving{cursor:default;}
+  #intro.leaving .intro-cue{opacity:0;transition:opacity 0.3s ease;}
+
+  /* ====================== NAV ====================== */
+  nav{
+    position:fixed;
+    top:0;left:0;right:0;
+    z-index:50;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:1.4rem clamp(1.25rem,5vw,3rem);
+    background:linear-gradient(to bottom,rgba(10,10,10,0.9),rgba(10,10,10,0));
+    opacity:0;
+    transform:translateY(-12px);
+    transition:opacity 0.7s ease, transform 0.7s var(--ease-out);
+    pointer-events:none;
+  }
+  body.entered nav{opacity:1;transform:none;transition-delay:0.5s;pointer-events:auto;}
+  .nav-mark{font-size:0.82rem;letter-spacing:0.04em;font-weight:500;}
+  .nav-mark .dim{color:var(--faint);font-weight:300;}
+  .nav-links{display:flex;gap:clamp(1rem,3vw,2.2rem);}
+  .nav-links a{
+    font-size:0.72rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--muted);
+    position:relative;
+    padding:0.3rem 0;
+    transition:color 0.3s ease;
+  }
+  .nav-links a::after{
+    content:"";
+    position:absolute;
+    left:0;bottom:0;
+    width:100%;height:1px;
+    background:currentColor;
+    transform:scaleX(0);
+    transform-origin:right;
+    transition:transform 0.4s var(--ease-out);
+  }
+  .nav-links a:hover,.nav-links a.active{color:var(--fg);}
+  .nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);transform-origin:left;}
+  @media(max-width:620px){.nav-links a:not(.nav-cta){display:none;}}
+
+  /* ====================== HERO ====================== */
+  #home{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding-top:6rem;
+    padding-bottom:4rem;
+  }
+  #heroName{
+    font-size:clamp(1.7rem,7vw,4rem);
+    opacity:0; /* revealed by JS when the intro name lands */
+  }
+  .hero-tag{
+    margin-top:1.6rem;
+    font-size:clamp(0.95rem,2.4vw,1.25rem);
+    color:var(--muted);
+    font-weight:300;
+    letter-spacing:0.01em;
+    max-width:34ch;
+    opacity:0;transform:translateY(14px);
+  }
+  .hero-tag .em{color:var(--fg);}
+  .hero-social{
+    margin-top:2.6rem;
+    display:flex;
+    gap:1.6rem;
+    flex-wrap:wrap;
+    opacity:0;transform:translateY(14px);
+  }
+  .link-u{
+    font-size:0.78rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--muted);
+    position:relative;
+    transition:color 0.3s ease;
+  }
+  .link-u::after{
+    content:"";position:absolute;left:0;bottom:-3px;width:100%;height:1px;
+    background:currentColor;transform:scaleX(0);transform-origin:right;
+    transition:transform 0.4s var(--ease-out);
+  }
+  .link-u:hover{color:var(--fg);}
+  .link-u:hover::after{transform:scaleX(1);transform-origin:left;}
+
+  body.entered .hero-tag{opacity:1;transform:none;transition:all 0.8s var(--ease-out) 0.7s;}
+  body.entered .hero-social{opacity:1;transform:none;transition:all 0.8s var(--ease-out) 0.85s;}
+
+  /* ====================== SECTIONS ====================== */
+  section{padding-block:clamp(5rem,11vh,9rem);}
+  .seclabel{
+    font-size:0.7rem;
+    letter-spacing:0.34em;
+    text-transform:uppercase;
+    color:var(--faint);
+    margin-bottom:2.6rem;
+    display:block;
+  }
+  .sechead{
+    font-size:clamp(1.6rem,4.5vw,2.6rem);
+    font-weight:300;
+    letter-spacing:-0.02em;
+    line-height:1.2;
+    max-width:24ch;
+  }
+  .lede{
+    margin-top:1.6rem;
+    font-size:clamp(1.05rem,2.6vw,1.35rem);
+    color:var(--muted);
+    font-weight:300;
+    max-width:52ch;
+    line-height:1.7;
+  }
+  .lede .em{color:var(--fg);}
+  .divider{border:0;border-top:1px solid var(--line);}
+
+  /* reveal on scroll */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity 0.9s ease, transform 0.9s var(--ease-out);}
+  .reveal.in{opacity:1;transform:none;}
+
+  /* ---------- about / stats ---------- */
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:clamp(1.5rem,4vw,3rem);
+    margin-top:4rem;
+    border-top:1px solid var(--line);
+    padding-top:2.6rem;
+  }
+  .stat .num{
+    font-size:clamp(2.4rem,6vw,3.8rem);
+    font-weight:200;
+    letter-spacing:-0.03em;
+    line-height:1;
+    font-variant-numeric:tabular-nums;
+  }
+  .stat .lab{
+    margin-top:0.7rem;
+    font-size:0.7rem;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--faint);
+  }
+  @media(max-width:560px){.stats{grid-template-columns:1fr;gap:2rem;text-align:left;}}
+
+  /* ---------- work list ---------- */
+  .work{margin-top:1rem;border-top:1px solid var(--line);}
+  .proj{border-bottom:1px solid var(--line);transition:background 0.4s ease;}
+  .proj-head{
+    display:grid;
+    grid-template-columns:1fr auto;
+    align-items:baseline;
+    gap:1rem;
+    padding:1.9rem 0.3rem;
+    cursor:pointer;
+    transition:padding-left 0.4s var(--ease-out);
+  }
+  .proj:hover{background:rgba(255,255,255,0.018);}
+  .proj:hover .proj-head{padding-left:1.1rem;}
+  .proj-title{
+    font-size:clamp(1.3rem,3.4vw,2rem);
+    font-weight:300;
+    letter-spacing:-0.01em;
+    transition:color 0.3s ease;
+  }
+  .proj-meta{
+    display:flex;
+    align-items:center;
+    gap:1.4rem;
+    color:var(--faint);
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  .proj-plus{
+    width:1rem;height:1rem;position:relative;flex-shrink:0;
+  }
+  .proj-plus::before,.proj-plus::after{
+    content:"";position:absolute;background:var(--muted);transition:transform 0.45s var(--ease);
+  }
+  .proj-plus::before{top:50%;left:0;width:100%;height:1px;transform:translateY(-50%);}
+  .proj-plus::after{left:50%;top:0;height:100%;width:1px;transform:translateX(-50%);}
+  .proj.open .proj-plus::after{transform:translateX(-50%) scaleY(0);}
+
+  .proj-body{
+    display:grid;
+    grid-template-rows:0fr;
+    transition:grid-template-rows 0.55s var(--ease);
+  }
+  .proj.open .proj-body{grid-template-rows:1fr;}
+  .proj-body-inner{overflow:hidden;}
+  .proj-content{
+    padding:0 0.3rem 2.4rem;
+    max-width:60ch;
+    opacity:0;
+    transform:translateY(10px);
+    transition:opacity 0.5s ease 0.1s, transform 0.5s var(--ease-out) 0.1s;
+  }
+  .proj.open .proj-content{opacity:1;transform:none;}
+  .proj-desc{color:var(--muted);margin-bottom:1.4rem;}
+  .proj-sub{
+    font-size:0.7rem;letter-spacing:0.22em;text-transform:uppercase;
+    color:var(--faint);margin:1.4rem 0 0.7rem;
+  }
+  .proj-list{list-style:none;}
+  .proj-list li{
+    color:var(--muted);font-size:0.95rem;padding-left:1.3rem;position:relative;margin-bottom:0.4rem;
+  }
+  .proj-list li::before{content:"—";position:absolute;left:0;color:var(--faint);}
+  .proj-tags{display:flex;flex-wrap:wrap;gap:0.5rem;margin:1.4rem 0;}
+  .tag{
+    font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--muted);border:1px solid var(--line);border-radius:100px;
+    padding:0.32rem 0.8rem;
+  }
+  .proj-links{display:flex;gap:1.4rem;margin-top:0.4rem;}
+
+  /* ---------- skills ---------- */
+  .skillgrid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,6vw,5rem);margin-top:1rem;}
+  @media(max-width:600px){.skillgrid{grid-template-columns:1fr;gap:3rem;}}
+  .skillgroup h3{
+    font-size:0.72rem;letter-spacing:0.24em;text-transform:uppercase;
+    color:var(--faint);font-weight:400;margin-bottom:1.6rem;
+  }
+  .skilllist{list-style:none;}
+  .skilllist li{
+    font-size:clamp(1.1rem,2.6vw,1.5rem);
+    font-weight:300;
+    color:var(--muted);
+    padding:0.55rem 0;
+    border-bottom:1px solid var(--line);
+    transition:color 0.3s ease, padding-left 0.4s var(--ease-out);
+    cursor:default;
+  }
+  .skilllist li:hover{color:var(--fg);padding-left:0.7rem;}
+  #ai .skillgrid{margin-top:3.2rem;}
+
+  /* ---------- education ---------- */
+  .edu{margin-top:1rem;}
+  .edu-item{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:1rem 2rem;
+    align-items:baseline;
+    padding:1.8rem 0;
+    border-top:1px solid var(--line);
+  }
+  .edu-item:last-child{border-bottom:1px solid var(--line);}
+  .edu-degree{font-size:clamp(1.05rem,2.6vw,1.4rem);font-weight:300;}
+  .edu-school{color:var(--muted);font-size:0.95rem;margin-top:0.35rem;}
+  .edu-note{color:var(--faint);font-size:0.8rem;letter-spacing:0.05em;margin-top:0.35rem;}
+  .edu-when{
+    color:var(--faint);font-size:0.74rem;letter-spacing:0.16em;text-transform:uppercase;
+    white-space:nowrap;text-align:right;
+  }
+  @media(max-width:560px){
+    .edu-item{grid-template-columns:1fr;}
+    .edu-when{text-align:left;}
+  }
+  .subhead{
+    font-size:0.7rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--faint);
+    margin:3.2rem 0 0.6rem;
+  }
+  .cert-main{display:flex;align-items:center;gap:1.15rem;}
+  .cert-logo{
+    flex-shrink:0;
+    width:2.1rem;height:2.1rem;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--muted);
+    transition:color 0.3s ease;
+  }
+  .cert-logo svg{width:100%;height:100%;fill:currentColor;display:block;}
+  .cert-item:hover .cert-logo{color:var(--fg);}
+
+  /* ---------- contact ---------- */
+  .contact-mail{
+    display:inline-block;
+    font-size:clamp(1.8rem,7vw,4.2rem);
+    font-weight:200;
+    letter-spacing:-0.03em;
+    margin-top:0.4rem;
+    position:relative;
+  }
+  .contact-mail::after{
+    content:"";position:absolute;left:0;bottom:0.15em;width:100%;height:1px;
+    background:var(--fg);transform:scaleX(0);transform-origin:right;
+    transition:transform 0.5s var(--ease-out);
+  }
+  .contact-mail:hover::after{transform:scaleX(1);transform-origin:left;}
+  .contact-social{display:flex;gap:1.8rem;flex-wrap:wrap;margin-top:3rem;}
+
+  /* ---------- footer ---------- */
+  footer{
+    border-top:1px solid var(--line);
+    padding:2.4rem 0;
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
+    color:var(--faint);font-size:0.72rem;letter-spacing:0.1em;
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    *{animation-duration:0.001ms!important;transition-duration:0.001ms!important;}
+    html{scroll-behavior:auto;}
+  }
+</style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="nav-container">
-                <a href="#home" class="nav-item" data-color="purple">Home</a>
-                <a href="#about" class="nav-item" data-color="orange">About</a>
-                <a href="#projects" class="nav-item" data-color="green">Projects</a>
-                <a href="#skills" class="nav-item" data-color="blue">Skills</a>
-                <a href="#transcripts" class="nav-item" data-color="cyan">Transcripts</a>
-                <a href="#certifications" class="nav-item" data-color="yellow">Certifications</a>
-                <a href="#contact" class="nav-item" data-color="red">Contact</a>
-            </div>
-        </header>
 
-        <main>
-            <section id="home" class="section">
-                <div class="profile">
+  <!-- ===== INTRO ===== -->
+  <div id="intro" role="button" tabindex="0" aria-label="Enter the site">
+    <div id="introBackdrop"></div>
+    <span id="introName" class="bigname">Johann Valenteros</span>
+    <span class="intro-cue">personal portfolio</span>
+  </div>
 
-                    <h1>Johann Valenteros</h1>
-                    <p>Cybersecurity AAS | Information Systems and Technology BSIS</p>
-                    
-                    <div class="social-links">
-                        <a target="_blank" rel="noopener noreferrer"  href="https://github.com/jvalenteros" class="social-link" aria-label="GitHub">
-                            <div class="social-box" data-color="purple">GH</div>
-                        </a>
-                        <a target="_blank" rel="noopener noreferrer"  href="https://www.linkedin.com/in/johannvalenteros/" class="social-link" aria-label="LinkedIn">
-                            <div class="social-box" data-color="blue">LI</div>
-                        </a>
-                        <a target="_blank" rel="noopener noreferrer"  href="https://x.com/p_aizuri" class="social-link" aria-label="Twitter">
-                            <div class="social-box" data-color="cyan">TW</div>
-                        </a>
-                        <a target="_blank" rel="noopener noreferrer"  href="mailto:connisquer@gmail.com" class="social-link" aria-label="Email">
-                            <div class="social-box" data-color="green">EM</div>
-                        </a>
-                        <a target="_blank" rel="noopener noreferrer"  href="https://spaceportside.bandcamp.com/" class="social-link" aria-label="Bandcamp">
-                            <div class="social-box" data-color="white">BC</div>
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <section id="about" class="section">
-                <div class="section-header">
-                    <div class="section-title" data-color="orange">About</div>
-                </div>
-                
-                <div class="terminal-window">
-                    <div class="terminal-header">
-                        <div class="terminal-title">about</div>
-                    </div>
-                    <div class="terminal-body">
-                        <div>
-                            <p>Hi. I'm Johann Valenteros. I like contributing on open-source projects and creating stuff.
-                            </p>
-                        </div>
-                        <div class="stats-container">
-                            <div class="stat-item">
-                                <div class="stat-box" data-color="purple">
-                                    <span class="stat-number">154</span>
-                                    <span class="stat-label">Contributions</span>
-                                </div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-box" data-color="green">
-                                    <span class="stat-number">6</span>
-                                    <span class="stat-label">Projects</span>
-                                </div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-box" data-color="blue">
-                                    <span class="stat-number">13</span>
-                                    <span class="stat-label">Repositories</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="projects" class="section">
-                <div class="section-header">
-                    <div class="section-title" data-color="green">Projects</div>
-                </div>
-                
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <div class="project-header">
-                            <div class="project-title" data-color="purple">Portfolio Website</div>
-                            <div class="project-links">
-                                <div class="project-stars">★ 3</div>
-                                <a href="https://github.com/jvalenteros/jvalenteros.github.io" class="github-link" aria-label="GitHub Repository">
-                                    <svg class="github-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                        <p class="project-description">
-                            📱 A responsive portfolio website built with HTML, CSS, and JavaScript.
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">HTML5</span>
-                            <span class="tag">CSS3</span>
-                            <span class="tag">JavaScript</span>
-                        </div>
-                        <button class="details-toggle" data-color="purple" aria-expanded="false" aria-controls="project-alpha-details">
-                            <span class="toggle-text">View Details</span>
-                            <span class="toggle-icon">▼</span>
-                        </button>
-                        <div class="project-details" id="project-alpha-details">
-                            <div class="details-section">
-                                <h3 class="details-title">Overview</h3>
-                                <p>This project will showcase my skills in front-end development, modern responsive design, and modern CSS techniques. Features include smooth transition animations, a mobile-friendly approach, and future accessibility considerations.
-                                </p>
-                            </div>
-                            <div class="details-section">
-                                <h3 class="details-title">Features</h3>
-                                <ul class="details-list">
-                                    <li>Interactive UI components with subtle animations</li>
-                                    <li>Dark/light theme switching with persistent preferences</li>
-                                    <li>Responsive layout optimized for all devices</li>
-                                    <li>Performance-focused implementation with minimal dependencies</li>
-                                </ul>
-                            </div>
-                            <div class="details-section">
-                                <h3 class="details-title">Implementation</h3>
-                                <p>Built with vanilla JavaScript and CSS Grid for layout. Implemented modern web APIs and accessibility best practices. The codebase also follows a component-based architecture for maintainability.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="project-card">
-                        <div class="project-header">
-                            <div class="project-title" data-color="blue">Password Strength Checker</div>
-                            <div class="project-links">
-                                <div class="project-stars">★ 3</div>
-                                <a href="https://github.com/MichaelDriguez/password-strength-checker" class="github-link" aria-label="GitHub Repository">
-                                    <svg class="github-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                        <p class="project-description">
-                            🔒 A command-line tool that evaluates password strength based on various security criteria.
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">Bash</span>
-                            <span class="tag">Security</span>
-                            <span class="tag">Command-line</span>
-                        </div>
-                        <button class="details-toggle" data-color="blue" aria-expanded="false" aria-controls="project-beta-details">
-                            <span class="toggle-text">View Details</span>
-                            <span class="toggle-icon">▼</span>
-                        </button>
-                        <div class="project-details" id="project-beta-details">
-                            <div class="details-section">
-                                <h3 class="details-title">Overview</h3>
-                                <p>A simple application written in Bash script that evaluates the strength of a given password based on various criteria.</p><br>
-                                <p>This collaborative project demonstrates our proficiency in Bash scripting and understanding of basic security principles. The bash script will analyze passwords for length, uses of different characters, and common patterns to provide a strength rating.</p>
-                            </div>
-                            <div class="details-section">
-                                <h3 class="details-title">Features</h3>
-                                <ul class="details-list">
-                                    <li>The application will check the password length</li>
-                                    <li>It will verify the use of uppercase, lowercase, numbers, and special characters</li>
-                                    <li>Provides a strength score and recommendation</li>
-                                    <li>Implements best practices for secure password handling</li>
-                                </ul>
-                            </div>
-                            <div class="details-section">
-                                <h3 class="details-title">My Contributions</h3>
-                                <ul class="details-list">
-                                    <li>Implemented the regex check patterns</li>
-                                    <li>Collaborated on security best practices implementation</li>
-                                </ul>
-                            </div>
-                            <div class="details-section">
-                                <h3 class="details-title">Implementation</h3>
-                                <p>Built with Bash for terminal and state management.</p>
-                            </div>
-                            <div class="project-tags">
-                                <span class="tag"><a target="_blank" rel="noopener noreferrer"  href="https://github.com/MichaelDriguez">In Collaboration with Michael Rodriguez</a></span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="project-card">
-                        <div class="project-header">
-                            <div class="project-title" data-color="orange">Encryption App</div>
-                            <div class="project-links">
-                                <div class="project-stars">★ 5</div>
-                                <a href="https://github.com/jvalenteros/encryption-app-py" class="github-link" aria-label="GitHub Repository">
-                                    <svg class="github-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                        <p class="project-description">
-                            🔐 A Python application for encrypting and decrypting files using various cryptographic algorithms.
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">Cryptography</span>
-                            <span class="tag">Security</span>
-                        </div>
-                        <button class="details-toggle" data-color="orange" aria-expanded="false" aria-controls="project-encryption-details">
-                            <span class="toggle-text">View Details</span>
-                            <span class="toggle-icon">▼</span>
-                        </button>
-                        <div class="project-details" id="project-encryption-details">
-                            <div class="details-section">
-                                <h3 class="details-title">Overview</h3>
-                                <p>A comprehensive Python application that provides secure file encryption and decryption capabilities using industry-standard cryptographic algorithms. This project demonstrates my understanding of cryptographic principles and secure programming practices.</p>
-                            </div>
-                            <div class="details-section">
-                                <h3 class="details-title">Features</h3>
-                                <ul class="details-list">
-                                    <li>Support for multiple encryption algorithms (AES, RSA)</li>
-                                    <li>Secure key generation and management</li>
-                                    <li>File integrity verification using checksums</li>
-                                    <li>Command-line interface for easy integration</li>
-                                    <li>Detailed logging and error handling</li>
-                                </ul>
-                            </div>
-                            <div class="details-section">
-                                <h3 class="details-title">Technical Highlights</h3>
-                                <ul class="details-list">
-                                    <li>Implemented using Python's cryptography library</li>
-                                    <li>Follows best practices for secure data handling</li>
-                                    <li>Includes comprehensive unit tests</li>
-                                    <li>Designed with modularity for easy extension</li>
-                                </ul>
-                            </div>
-                            <div class="details-section">
-                                <h3 class="details-title">Implementation</h3>
-                                <p>Built with Python 3.x and leveraging modern cryptographic libraries. The application follows a modular architecture with clear separation of concerns between the cryptographic operations, file handling, and user interface components.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="project-card">
-                        <div class="project-header">
-                            <div class="project-title" data-color="cyan">Password Generator Web</div>
-                            <div class="project-links">
-                                <div class="project-stars">★ 1</div>
-                                <a href="https://github.com/jvalenteros/passgen-web" class="github-link" aria-label="GitHub Repository">
-                                    <svg class="github-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                        <p class="project-description">
-                            🔑 A web-based password generator with customizable options for creating strong, secure passwords.
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">HTML5</span>
-                            <span class="tag">CSS</span>
-                            <span class="tag">JavaScript</span>
-                        </div>
-                        <button class="details-toggle" data-color="cyan" aria-expanded="false" aria-controls="project-passgen-details">
-                            <span class="toggle-text">View Details</span>
-                            <span class="toggle-icon">▼</span>
-                        </button>
-                        <div class="project-details" id="project-passgen-details">
-                            <div class="details-section">
-                                <h3 class="details-title">Overview</h3>
-                                <p>A responsive web application inspired by Discord's UI styling that generates secure, random passwords based on user-defined criteria. This project showcases my front-end development skills and understanding of web security principles.</p>
-                            </div>
-                            <div class="details-section">
-                                <h3 class="details-title">Features</h3>
-                                <ul class="details-list">
-                                    <li>Customizable password length (8-128 characters)</li>
-                                    <li>Options for including uppercase letters, lowercase letters, numbers, and special characters</li>
-                                    <li>Password strength indicator with visual feedback</li>
-                                    <li>One-click copy to clipboard functionality</li>
-                                    <li>Password history with the ability to recover previously generated passwords</li>
-                                    <li>Mobile-responsive design for use on any device</li>
-                                </ul>
-                            </div>
-                            <div class="details-section">
-                                <h3 class="details-title">Technical Highlights</h3>
-                                <ul class="details-list">
-                                    <li>Built with vanilla JavaScript for optimal performance</li>
-                                    <li>Uses the Web Crypto API for secure random number generation</li>
-                                    <li>Implements modern CSS features including Grid and Flexbox</li>
-                                </ul>
-                            </div>
-                            <div class="details-section">
-                                <h3 class="details-title">Implementation</h3>
-                                <p>Developed using HTML5, CSS3, and JavaScript with a focus on clean, maintainable code. The application uses client-side processing to ensure that passwords are never transmitted over the network, enhancing security.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="project-card">
-                        <div class="project-header">
-                            <div class="project-title" data-color="green">Ciphers</div>
-                            <div class="project-links">
-                                <div class="project-stars">★ 4</div>
-                                <a href="https://github.com/jvalenteros/ciphers" class="github-link" aria-label="GitHub Repository">
-                                    <svg class="github-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                        <p class="project-description">
-                            🔐 A versatile web application for encoding and decoding text using various ciphers, built with HTML, JavaScript, and Tailwind CSS.
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">HTML5</span>
-                            <span class="tag">CSS</span>
-                            <span class="tag">Javascript</span>
-                        </div>
-                        <button class="details-toggle" data-color="green" aria-expanded="false" aria-controls="project-gamma-details">
-                            <span class="toggle-text">View Details</span>
-                            <span class="toggle-icon">▼</span>
-                        </button>
-                        <div class="project-details" id="project-gamma-details">
-                            <div class="details-tabs">
-                                <button class="details-tab active" data-target="gamma-original">Original (JS + Tailwind)</button>
-                                <button class="details-tab" data-target="gamma-react">React + Vite Version</button>
-                            </div>
-                            <div class="details-content">
-                                <div class="details-panel active" id="gamma-original">
-                                    <div class="details-section">
-                                        <h3 class="details-title">Overview</h3>
-                                        <p>A simple versatile web application for encoding and decoding text using various ciphers, originally built with vanilla JavaScript and Tailwind CSS.</p>
-                                    </div>
-                                    <div class="details-section">
-                                        <h3 class="details-title">Features</h3>
-                                        <ul class="details-list">
-                                            <li>Support for multiple ciphers (ROT13, Caesar, Vigenère, etc.)</li>
-                                            <li>Encode and decode functionality for each cipher</li>
-                                            <li>Real-time character and word count</li>
-                                            <li>Clean and responsive user interface built with Tailwind CSS</li>
-                                            <li>Fast and efficient processing with vanilla JavaScript</li>
-                                            <li>Mobile-friendly design</li>
-                                        </ul>
-                                    </div>
-                                    <div class="details-section">
-                                        <h3 class="details-title">Supported Ciphers</h3>
-                                        <ul class="details-list">
-                                            <li>ROT13</li>
-                                            <li>Caesar Cipher</li>
-                                            <li>Vigenère Cipher</li>
-                                            <li>More ciphers planned</li>
-                                        </ul>
-                                    </div>
-                                    <div class="details-section">
-                                        <h3 class="details-title">Implementation</h3>
-                                        <p>Designed in HTML5, Javascript and styled with Tailwind CSS. Follows a component-like structure for organization.</p>
-                                    </div>
-                                    <div class="project-tags">
-                                        <span class="tag"><a target="_blank" rel="noopener noreferrer" href="https://github.com/MichaelDriguez">In Collaboration with Michael Rodriguez</a></span>
-                                    </div>
-                                </div>
-
-                                <div class="details-panel" id="gamma-react">
-                                    <div class="details-section">
-                                        <h3 class="details-title">Overview (React + Vite)</h3>
-                                        <p>A modern rebuild of the Ciphers application using React and Vite for enhanced development experience and performance. Leverages component-based architecture and modern tooling. Additional support for multiple ciphers.</p>
-                                        <p>View the code: <a href="https://github.com/jvalenteros/ciphers/tree/react-vite" target="_blank" rel="noopener noreferrer">React/Vite Branch</a></p>
-                                    </div>
-                                    <div class="details-section">
-                                        <h3 class="details-title">Key Enhancements</h3>
-                                        <ul class="details-list">
-                                            <li>Built with React for modular and reusable UI components</li>
-                                            <li>Utilizes Vite for lightning-fast development server and optimized builds</li>
-                                            <li>Maintains the clean UI with Tailwind CSS integration</li>
-                                            <li>Improved state management using React hooks</li>
-                                            <li>Enhanced developer experience with Hot Module Replacement (HMR)</li>
-                                            <li>Added Vigenère, Atbash, Rail Fence, and Beaufort ciphers</li>
-                                        </ul>
-                                    </div>
-                                    <div class="details-section">
-                                        <h3 class="details-title">Tech Stack</h3>
-                                        <ul class="details-list">
-                                            <li>React</li>
-                                            <li>Vite</li>
-                                            <li>Tailwind CSS</li>
-                                            <li>JavaScript (ES6+)</li>
-                                        </ul>
-                                    </div>
-                                    <div class="details-section">
-                                        <h3 class="details-title">Implementation Notes</h3>
-                                        <p>This version focuses on modernizing the frontend stack while retaining the core cipher functionalities. The component structure makes future additions and maintenance easier.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </section>
-
-            <section id="skills" class="section">
-                <div class="section-header">
-                    <div class="section-title" data-color="blue">Skills</div>
-                </div>
-                
-                <div class="skills-container">
-                    <div class="skill-category">
-                        <div class="category-title" data-color="purple">Development</div>
-                        <div class="skills-grid">
-                            <div class="skill-tag" data-color="purple">HTML5/CSS</div>
-                            <div class="skill-tag" data-color="purple">JavaScript</div>
-                            <div class="skill-tag" data-color="purple">Java</div>
-                            <div class="skill-tag" data-color="purple">Python</div>
-                            <div class="skill-tag" data-color="purple">Node.js</div>
-                            <div class="skill-tag" data-color="purple">Git</div>
-                            <div class="skill-tag" data-color="purple">Bash</div>
-                            <div class="skill-tag" data-color="purple">C#</div>
-                        </div>
-                    </div>
-                    
-                    <div class="skill-category">
-                        <div class="category-title" data-color="green">Design</div>
-                        <div class="skills-grid">
-                            <div class="skill-tag" data-color="green">UI/UX</div>
-                            <div class="skill-tag" data-color="green">Tailwind CSS</div>
-                            <div class="skill-tag" data-color="green">Photoshop</div>
-                            <div class="skill-tag" data-color="green">Illustrator</div>
-                            <div class="skill-tag" data-color="green">Typography</div>
-                        </div>
-                    </div>
-
-                </div>
-            </section>
-
-            <section id="transcripts" class="section">
-                <div class="section-header">
-                    <div class="section-title" data-color="cyan">Transcripts</div>
-                </div>
-                
-                <div class="terminal-window">
-                    <div class="terminal-header">
-                        <div class="terminal-title">transcripts</div>
-                    </div>
-                    <div class="terminal-body">
-                        <div>
-                            <h3 class="transcript-title" data-color="white">Academic Transcripts</h3>
-
-                            <div class="transcript-item">
-                                <h4 class="transcript-degree">Cybersecurity: Information Systems & Technology | BS</h4>
-                                <p class="transcript-school">University of Missouri - St. Louis</p>
-                                <div class="transcript-details">
-                                    <p>Graduation Year: Winter 2027</p>
-                                    <p>Transfer Date: Fall 2025</p>
-                                </div>
-                            </div>
-                            
-                            <div class="transcript-item">
-                                <h4 class="transcript-degree">Associate in Applied Science | Cybersecurity AAS</h4>
-                                <p class="transcript-school">St. Louis Community College</p>
-                                <div class="transcript-details">
-                                    <p>Graduation Year: 2025</p>
-                                    <p>GPA: 3.75</p>
-                                    <p>Cum Laude</p>
-                                </div>
-                            </div>
-
-                            <div class="transcript-item">
-                                <h4 class="transcript-degree">High School Diploma</h4>
-                                <p class="transcript-school">Lindbergh High School</p>
-                                <div class="transcript-details">
-                                    <p>Graduation Year: 2023</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="certifications" class="section">
-                <div class="section-header">
-                    <div class="section-title" data-color="yellow">Certifications</div>
-                </div>
-
-                <div class="terminal-window">
-                    <div class="terminal-header">
-                        <div class="terminal-title">certifications</div>
-                    </div>
-                    <div class="terminal-body">
-                        <div>
-                            <h3 class="transcript-title" data-color="white">Industry Certifications</h3>
-
-                            <div class="transcript-item">
-                                <h4 class="transcript-degree">Placeholder Certification 1</h4>
-                                <p class="transcript-school">Awarding Institution</p>
-                                <div class="transcript-details">
-                                    <p>Date Acquired: Jan 2024</p>
-                                    <p>Verification: ABC-123-XYZ</p>
-                                </div>
-                            </div>
-
-                            <div class="transcript-item">
-                                <h4 class="transcript-degree">Placeholder Certification 2</h4>
-                                <p class="transcript-school">Awarding Institution</p>
-                                <div class="transcript-details">
-                                    <p>Date Acquired: Feb 2024</p>
-                                    <p>Verification: DEF-456-UVW</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="contact" class="section">
-                <div class="section-header">
-                    <div class="section-title" data-color="red">Contact</div>
-                </div>
-                
-                <div class="terminal-window">
-                    <div class="terminal-header">
-                        <div class="terminal-title">contact</div>
-                    </div>
-                    <div class="terminal-body">
-
-                        <div class="terminal-output">
-                            <p>Feel free to reach out to me through my email or my other social links.</p>
-                        </div>
-                                
-                        <div class="contact-grid">
-                            <!-- GitHub Section -->
-                            <div class="contact-card" role="region" aria-labelledby="github-heading">
-                                <h3 id="github-heading" class="contact-heading" data-color="purple">
-                                    <svg aria-hidden="true" class="contact-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                        <path fill="currentColor" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.207 11.387.6.113.793-.26.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
-                                    </svg>
-                                    GitHub
-                                </h3>
-                                <a href="https://github.com/jvalenteros" target="_blank" rel="noopener noreferrer" class="github-stats" aria-label="GitHub profile">
-                                    <div class="stat-item">
-                                        <div class="stat-box" data-color="purple">
-                                            <span class="stat-number">13</span>
-                                            <span class="stat-label">Repositories</span>
-                                        </div>
-                                    </div>
-                                    <div class="stat-item">
-                                        <div class="stat-box" data-color="blue">
-                                            <span class="stat-number">154</span>
-                                            <span class="stat-label">Contributions</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <!-- Email Section -->
-                            <div class="contact-card" role="region" aria-labelledby="email-heading">
-                                <h3 id="email-heading" class="contact-heading" data-color="green">
-                                    <svg aria-hidden="true" class="contact-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                        <path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                                    </svg>
-                                    Email
-                                </h3>
-                                <div class="email-wrapper">
-                                    <span class="email-obfuscated" data-email="bWFpbHRvOmNvbm5pc3F1ZXJAZ21haWwuY29t">connisquer@gmail.com</span>
-                                </div>
-                            </div>
-
-                            <!-- Social Links -->
-                            <div class="contact-card" role="region" aria-labelledby="social-heading">
-                                <h3 id="social-heading" class="contact-heading" data-color="blue">
-                                    <svg aria-hidden="true" class="contact-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                        <path fill="currentColor" d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm6.066 9.645c.183 4.04-2.83 8.544-8.164 8.544-1.622 0-3.131-.476-4.402-1.291 1.524.18 3.045-.244 4.252-1.189-1.256-.023-2.317-.854-2.684-1.995.451.086.895.061 1.298-.049-1.381-.278-2.335-1.522-2.304-2.853.388.215.83.344 1.301.359-1.279-.855-1.641-2.544-.889-3.835 1.416 1.738 3.533 2.881 5.92 3.001-.419-1.796 1.079-3.594 2.867-3.594.846 0 1.61.356 2.146.933.653-.128 1.307-.368 1.894-.697-.215.671-.67 1.233-1.263 1.589.581-.07 1.135-.224 1.649-.453-.384.578-.87 1.084-1.433 1.489z"/>
-                                    </svg>
-                                    Connect
-                                </h3>
-                                <div class="social-grid">
-                                    <a href="https://linkedin.com/in/johannvalenteros" target="_blank" rel="noopener noreferrer" class="social-button" aria-label="LinkedIn" data-color="blue">
-                                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                            <path fill="currentColor" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                                        </svg>
-                                    </a>
-                                    <a href="https://x.com/p_aizuri" target="_blank" rel="noopener noreferrer" class="social-button" aria-label="Twitter" data-color="cyan">
-                                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                            <path fill="currentColor" d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <footer>
-            <p>© 2025-2026 Johann Valenteros.</p>
-        </footer>
+  <!-- ===== NAV ===== -->
+  <nav aria-label="Primary">
+    <a href="#home" class="nav-mark">JV<span class="dim">.</span></a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#skills">Skills</a>
+      <a href="#ai">AI</a>
+      <a href="#education">Education</a>
+      <a href="#contact" class="nav-cta">Contact</a>
     </div>
-    <script src="js/project-details.js"></script>
-    <script src="js/dynamic-stats.js"></script>
+  </nav>
+
+  <main class="wrap">
+
+    <!-- ===== HOME ===== -->
+    <section id="home">
+      <h1 id="heroName" class="bigname">Johann Valenteros</h1>
+      <p class="hero-tag">Cybersecurity &amp; information systems. I build small, simple tools <span class="em">and contribute to open source</span>.</p>
+      <div class="hero-social">
+        <a class="link-u" href="https://github.com/jvalenteros" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a class="link-u" href="https://www.linkedin.com/in/johannvalenteros/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a class="link-u" href="https://x.com/p_aizuri" target="_blank" rel="noopener noreferrer">X</a>
+        <a class="link-u" href="https://spaceportside.bandcamp.com/" target="_blank" rel="noopener noreferrer">Bandcamp</a>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section id="about">
+      <span class="seclabel reveal">About</span>
+      <h2 class="sechead reveal">Undergraduate Student at University of Missouri - St. Louis</h2>
+      <p class="lede reveal">I work mostly in the open, small security utilities, encryption tools, and the occasional web build. I care about simple and easy to read code, careful detail, and learning by making mistakes.</p>
+      <div class="stats reveal">
+        <div class="stat"><div class="num" data-count="154">154</div><div class="lab">Contributions</div></div>
+        <div class="stat"><div class="num" data-count="6">6</div><div class="lab">Projects</div></div>
+        <div class="stat"><div class="num" id="repoCount" data-count="13">13</div><div class="lab">Repositories</div></div>
+      </div>
+    </section>
+
+    <!-- ===== WORK ===== -->
+    <section id="work">
+      <span class="seclabel reveal">Selected Works</span>
+      <div class="work reveal">
+
+        <article class="proj">
+          <div class="proj-head" role="button" tabindex="0" aria-expanded="false">
+            <span class="proj-title">Encryption App</span>
+            <span class="proj-meta">Python · 2024 <span class="proj-plus" aria-hidden="true"></span></span>
+          </div>
+          <div class="proj-body"><div class="proj-body-inner"><div class="proj-content">
+            <p class="proj-desc">A Python application for encrypting and decrypting files using industry-standard cryptographic algorithms. A study in cryptographic principles and secure programming.</p>
+            <div class="proj-sub">Highlights</div>
+            <ul class="proj-list">
+              <li>Multiple algorithms (AES, RSA) with secure key generation</li>
+              <li>File integrity verification via checksums</li>
+              <li>Clean CLI and detailed logging / error handling</li>
+            </ul>
+            <div class="proj-tags"><span class="tag">Python</span><span class="tag">Cryptography</span><span class="tag">Security</span></div>
+            <div class="proj-links"><a class="link-u" href="https://github.com/jvalenteros/encryption-app-py" target="_blank" rel="noopener noreferrer">View repository</a></div>
+          </div></div></div>
+        </article>
+
+        <article class="proj">
+          <div class="proj-head" role="button" tabindex="0" aria-expanded="false">
+            <span class="proj-title">Ciphers</span>
+            <span class="proj-meta">React · Web <span class="proj-plus" aria-hidden="true"></span></span>
+          </div>
+          <div class="proj-body"><div class="proj-body-inner"><div class="proj-content">
+            <p class="proj-desc">A web app for encoding and decoding text across classic ciphers. Originally built with vanilla JS and Tailwind, later rebuilt with React + Vite for a modular, modern stack.</p>
+            <div class="proj-sub">Supported ciphers</div>
+            <ul class="proj-list">
+              <li>ROT13, Caesar, Vigenère</li>
+              <li>Atbash, Rail Fence, Beaufort</li>
+              <li>Real-time character &amp; word count</li>
+            </ul>
+            <div class="proj-tags"><span class="tag">React</span><span class="tag">Vite</span><span class="tag">Tailwind</span><span class="tag">JavaScript</span></div>
+            <div class="proj-links">
+              <a class="link-u" href="https://github.com/jvalenteros/ciphers" target="_blank" rel="noopener noreferrer">View repository</a>
+              <a class="link-u" href="https://github.com/MichaelDriguez" target="_blank" rel="noopener noreferrer">With M. Rodriguez</a>
+            </div>
+          </div></div></div>
+        </article>
+
+        <article class="proj">
+          <div class="proj-head" role="button" tabindex="0" aria-expanded="false">
+            <span class="proj-title">Password Strength Checker</span>
+            <span class="proj-meta">Bash · CLI <span class="proj-plus" aria-hidden="true"></span></span>
+          </div>
+          <div class="proj-body"><div class="proj-body-inner"><div class="proj-content">
+            <p class="proj-desc">A command-line tool that scores password strength against length, character variety, and common patterns — a small collaboration grounded in basic security principles.</p>
+            <div class="proj-sub">What it does</div>
+            <ul class="proj-list">
+              <li>Checks length and use of upper / lower / number / symbol</li>
+              <li>Returns a strength score and recommendation</li>
+              <li>Follows safe password-handling practices</li>
+            </ul>
+            <div class="proj-tags"><span class="tag">Bash</span><span class="tag">Security</span><span class="tag">Command-line</span></div>
+            <div class="proj-links">
+              <a class="link-u" href="https://github.com/MichaelDriguez/password-strength-checker" target="_blank" rel="noopener noreferrer">View repository</a>
+              <a class="link-u" href="https://github.com/MichaelDriguez" target="_blank" rel="noopener noreferrer">With M. Rodriguez</a>
+            </div>
+          </div></div></div>
+        </article>
+
+        <article class="proj">
+          <div class="proj-head" role="button" tabindex="0" aria-expanded="false">
+            <span class="proj-title">Password Generator</span>
+            <span class="proj-meta">Web · 2024 <span class="proj-plus" aria-hidden="true"></span></span>
+          </div>
+          <div class="proj-body"><div class="proj-body-inner"><div class="proj-content">
+            <p class="proj-desc">A browser-based generator for strong, random passwords. Everything runs client-side — passwords are never sent over the network.</p>
+            <div class="proj-sub">Features</div>
+            <ul class="proj-list">
+              <li>Adjustable length (8–128) and character sets</li>
+              <li>Strength indicator and one-click copy</li>
+              <li>Uses the Web Crypto API for secure randomness</li>
+            </ul>
+            <div class="proj-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+            <div class="proj-links"><a class="link-u" href="https://github.com/jvalenteros/passgen-web" target="_blank" rel="noopener noreferrer">View repository</a></div>
+          </div></div></div>
+        </article>
+
+        <article class="proj">
+          <div class="proj-head" role="button" tabindex="0" aria-expanded="false">
+            <span class="proj-title">Portfolio Website</span>
+            <span class="proj-meta">Web · 2025 <span class="proj-plus" aria-hidden="true"></span></span>
+          </div>
+          <div class="proj-body"><div class="proj-body-inner"><div class="proj-content">
+            <p class="proj-desc">A responsive portfolio built from scratch with vanilla web technologies — a focus on minimal design, motion, and accessibility. (You're looking at it.)</p>
+            <div class="proj-sub">Approach</div>
+            <ul class="proj-list">
+              <li>Hand-written HTML, CSS &amp; JavaScript, no frameworks</li>
+              <li>Scroll-triggered reveals and a morphing intro</li>
+              <li>Responsive, keyboard-navigable, reduced-motion aware</li>
+            </ul>
+            <div class="proj-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+            <div class="proj-links"><a class="link-u" href="https://github.com/jvalenteros/jvalenteros.github.io" target="_blank" rel="noopener noreferrer">View repository</a></div>
+          </div></div></div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ===== SKILLS ===== -->
+    <section id="skills">
+      <span class="seclabel reveal">Skills</span>
+      <div class="skillgrid reveal">
+        <div class="skillgroup">
+          <h3>Development</h3>
+          <ul class="skilllist">
+            <li>HTML &amp; CSS</li>
+            <li>JavaScript</li>
+            <li>Python</li>
+            <li>Java</li>
+            <li>Node.js</li>
+            <li>Bash</li>
+            <li>C#</li>
+            <li>Git</li>
+            <li>GitHub</li>
+            <li>GitLab</li>
+          </ul>
+        </div>
+        <div class="skillgroup">
+          <h3>Design</h3>
+          <ul class="skilllist">
+            <li>UI / UX</li>
+            <li>Tailwind CSS</li>
+            <li>Typography</li>
+            <li>Photoshop</li>
+            <li>Illustrator</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== AI WORKFLOW ===== -->
+    <section id="ai">
+      <span class="seclabel reveal">AI Workflow</span>
+      <h2 class="sechead reveal">Utilizing AI-assistant workflow, hand-verified. I stay accountable for every line.</h2>
+      <p class="lede reveal">It's no suprise that AI has dominated most front and backend roles, I utilize AI-assisted development to ship clean, responsive websites while keeping the <span class="em">design authorship, debugging, manual deployment, and quality control</span> in my own agency. I scrutinize and peruse every change by hand, I also trace and fix errors myself, inspecting the console, and testing edge cases, and I can explain in-depth every component, every CSS choice, and the reasoning behind each one.</p>
+      <div class="skillgrid reveal">
+        <div class="skillgroup">
+          <h3>AI Tools</h3>
+          <ul class="skilllist">
+            <li>Claude Code</li>
+            <li>Codex</li>
+            <li>VSCode w Claude</li>
+            <li>JetBrains Suite</li>
+          </ul>
+        </div>
+        <div class="skillgroup">
+          <h3>Backend &amp; Data</h3>
+          <ul class="skilllist">
+            <li>PostSQL</li>
+            <li>Insomnia API</li>
+            <li>Server &amp; databases</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== EDUCATION ===== -->
+    <section id="education">
+      <span class="seclabel reveal">Education</span>
+      <div class="edu reveal">
+        <div class="edu-item">
+          <div>
+            <div class="edu-degree">B.S. Cybersecurity — Information Systems &amp; Technology</div>
+            <div class="edu-school">University of Missouri–St. Louis</div>
+            <div class="edu-note">Transferred Fall 2025</div>
+          </div>
+          <div class="edu-when">Expected 2027</div>
+        </div>
+        <div class="edu-item">
+          <div>
+            <div class="edu-degree">A.A.S. Cybersecurity</div>
+            <div class="edu-school">St. Louis Community College</div>
+            <div class="edu-note">GPA 3.75 · Cum Laude</div>
+          </div>
+          <div class="edu-when">2025</div>
+        </div>
+      </div>
+      <!-- ===== SVG HELL ===== -->  
+      <div class="subhead reveal">Certifications</div>
+      <div class="edu reveal">
+        <div class="edu-item cert-item">
+          <div class="cert-main">
+            <span class="cert-logo" aria-hidden="true">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.763 10.036c0 .296.032.535.088.71.064.176.144.368.256.576.04.063.056.127.056.183 0 .08-.048.16-.152.24l-.503.335a.383.383 0 0 1-.208.072c-.08 0-.16-.04-.239-.112a2.47 2.47 0 0 1-.287-.375 6.18 6.18 0 0 1-.248-.471c-.622.734-1.405 1.101-2.347 1.101-.67 0-1.205-.191-1.596-.574-.391-.384-.59-.894-.59-1.533 0-.678.239-1.23.726-1.644.487-.415 1.133-.623 1.955-.623.272 0 .551.024.846.064.296.04.6.104.918.176v-.583c0-.607-.127-1.03-.375-1.277-.255-.248-.686-.367-1.3-.367-.28 0-.568.031-.863.103-.295.072-.583.16-.862.272a2.287 2.287 0 0 1-.28.104.488.488 0 0 1-.127.023c-.112 0-.168-.08-.168-.247v-.391c0-.128.016-.224.056-.28a.597.597 0 0 1 .224-.167c.279-.144.614-.264 1.005-.36a4.84 4.84 0 0 1 1.246-.151c.95 0 1.644.216 2.091.647.439.43.662 1.085.662 1.963v2.586zm-3.24 1.214c.263 0 .534-.048.822-.144.287-.096.543-.271.758-.51.128-.152.224-.32.272-.512.047-.191.08-.423.08-.694v-.335a6.66 6.66 0 0 0-.735-.136 6.02 6.02 0 0 0-.75-.048c-.535 0-.926.104-1.19.32-.263.215-.39.518-.39.917 0 .375.095.655.295.846.191.2.47.296.838.296zm6.41.862c-.144 0-.24-.024-.304-.08-.064-.048-.12-.16-.168-.311L7.586 5.55a1.398 1.398 0 0 1-.072-.32c0-.128.064-.2.191-.2h.783c.151 0 .255.025.31.08.065.048.113.16.16.312l1.342 5.284 1.245-5.284c.04-.16.088-.264.151-.312a.549.549 0 0 1 .32-.08h.638c.152 0 .256.025.32.08.063.048.12.16.151.312l1.261 5.348 1.381-5.348c.048-.16.104-.264.16-.312a.52.52 0 0 1 .311-.08h.743c.127 0 .2.065.2.2 0 .04-.009.08-.017.128a1.137 1.137 0 0 1-.056.2l-1.923 6.17c-.048.16-.104.263-.168.311a.51.51 0 0 1-.303.08h-.687c-.151 0-.255-.024-.32-.08-.063-.056-.119-.16-.15-.32l-1.238-5.148-1.23 5.14c-.04.16-.087.264-.15.32-.065.056-.177.08-.32.08zm10.256.215c-.415 0-.83-.048-1.229-.143-.399-.096-.71-.2-.918-.32-.128-.071-.215-.151-.247-.223a.563.563 0 0 1-.048-.224v-.407c0-.167.064-.247.183-.247.048 0 .096.008.144.024.048.016.12.048.2.08.271.12.566.215.878.279.319.064.63.096.95.096.502 0 .894-.088 1.165-.264a.86.86 0 0 0 .415-.758.777.777 0 0 0-.215-.559c-.144-.151-.416-.287-.807-.415l-1.157-.36c-.583-.183-1.014-.454-1.277-.813a1.902 1.902 0 0 1-.4-1.158c0-.335.073-.63.216-.886.144-.255.335-.479.575-.654.24-.184.51-.32.83-.415.32-.096.655-.136 1.006-.136.175 0 .359.008.535.032.183.024.35.056.518.088.16.04.312.08.455.127.144.048.256.096.336.144a.69.69 0 0 1 .24.2.43.43 0 0 1 .071.263v.375c0 .168-.064.256-.184.256a.83.83 0 0 1-.303-.096 3.652 3.652 0 0 0-1.532-.311c-.455 0-.815.071-1.062.223-.248.152-.375.383-.375.71 0 .224.08.416.24.567.159.152.454.304.877.44l1.134.358c.574.184.99.44 1.237.767.247.327.367.702.367 1.117 0 .343-.072.655-.207.926-.144.272-.336.511-.583.703-.248.2-.543.343-.886.447-.36.111-.734.167-1.142.167zM21.698 16.207c-2.626 1.94-6.442 2.969-9.722 2.969-4.598 0-8.74-1.7-11.87-4.526-.247-.223-.024-.527.272-.351 3.384 1.963 7.559 3.153 11.877 3.153 2.914 0 6.114-.607 9.06-1.852.439-.2.814.287.383.607zM22.792 14.961c-.336-.43-2.22-.207-3.074-.103-.255.032-.295-.192-.063-.36 1.5-1.053 3.967-.75 4.254-.399.287.36-.08 2.826-1.485 4.007-.215.184-.423.088-.327-.151.32-.79 1.03-2.57.695-2.994z"/></svg>
+            </span>
+            <div>
+              <div class="edu-degree">AWS Certified Cloud Practitioner</div>
+              <div class="edu-school">Amazon Web Services (AWS)</div>
+              <div class="edu-note">Valid through May 2028</div>
+            </div>
+          </div>
+          <div class="edu-when">May 2025</div>
+        </div>
+        <div class="edu-item cert-item">
+          <div class="cert-main">
+            <span class="cert-logo" aria-hidden="true">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.763 10.036c0 .296.032.535.088.71.064.176.144.368.256.576.04.063.056.127.056.183 0 .08-.048.16-.152.24l-.503.335a.383.383 0 0 1-.208.072c-.08 0-.16-.04-.239-.112a2.47 2.47 0 0 1-.287-.375 6.18 6.18 0 0 1-.248-.471c-.622.734-1.405 1.101-2.347 1.101-.67 0-1.205-.191-1.596-.574-.391-.384-.59-.894-.59-1.533 0-.678.239-1.23.726-1.644.487-.415 1.133-.623 1.955-.623.272 0 .551.024.846.064.296.04.6.104.918.176v-.583c0-.607-.127-1.03-.375-1.277-.255-.248-.686-.367-1.3-.367-.28 0-.568.031-.863.103-.295.072-.583.16-.862.272a2.287 2.287 0 0 1-.28.104.488.488 0 0 1-.127.023c-.112 0-.168-.08-.168-.247v-.391c0-.128.016-.224.056-.28a.597.597 0 0 1 .224-.167c.279-.144.614-.264 1.005-.36a4.84 4.84 0 0 1 1.246-.151c.95 0 1.644.216 2.091.647.439.43.662 1.085.662 1.963v2.586zm-3.24 1.214c.263 0 .534-.048.822-.144.287-.096.543-.271.758-.51.128-.152.224-.32.272-.512.047-.191.08-.423.08-.694v-.335a6.66 6.66 0 0 0-.735-.136 6.02 6.02 0 0 0-.75-.048c-.535 0-.926.104-1.19.32-.263.215-.39.518-.39.917 0 .375.095.655.295.846.191.2.47.296.838.296zm6.41.862c-.144 0-.24-.024-.304-.08-.064-.048-.12-.16-.168-.311L7.586 5.55a1.398 1.398 0 0 1-.072-.32c0-.128.064-.2.191-.2h.783c.151 0 .255.025.31.08.065.048.113.16.16.312l1.342 5.284 1.245-5.284c.04-.16.088-.264.151-.312a.549.549 0 0 1 .32-.08h.638c.152 0 .256.025.32.08.063.048.12.16.151.312l1.261 5.348 1.381-5.348c.048-.16.104-.264.16-.312a.52.52 0 0 1 .311-.08h.743c.127 0 .2.065.2.2 0 .04-.009.08-.017.128a1.137 1.137 0 0 1-.056.2l-1.923 6.17c-.048.16-.104.263-.168.311a.51.51 0 0 1-.303.08h-.687c-.151 0-.255-.024-.32-.08-.063-.056-.119-.16-.15-.32l-1.238-5.148-1.23 5.14c-.04.16-.087.264-.15.32-.065.056-.177.08-.32.08zm10.256.215c-.415 0-.83-.048-1.229-.143-.399-.096-.71-.2-.918-.32-.128-.071-.215-.151-.247-.223a.563.563 0 0 1-.048-.224v-.407c0-.167.064-.247.183-.247.048 0 .096.008.144.024.048.016.12.048.2.08.271.12.566.215.878.279.319.064.63.096.95.096.502 0 .894-.088 1.165-.264a.86.86 0 0 0 .415-.758.777.777 0 0 0-.215-.559c-.144-.151-.416-.287-.807-.415l-1.157-.36c-.583-.183-1.014-.454-1.277-.813a1.902 1.902 0 0 1-.4-1.158c0-.335.073-.63.216-.886.144-.255.335-.479.575-.654.24-.184.51-.32.83-.415.32-.096.655-.136 1.006-.136.175 0 .359.008.535.032.183.024.35.056.518.088.16.04.312.08.455.127.144.048.256.096.336.144a.69.69 0 0 1 .24.2.43.43 0 0 1 .071.263v.375c0 .168-.064.256-.184.256a.83.83 0 0 1-.303-.096 3.652 3.652 0 0 0-1.532-.311c-.455 0-.815.071-1.062.223-.248.152-.375.383-.375.71 0 .224.08.416.24.567.159.152.454.304.877.44l1.134.358c.574.184.99.44 1.237.767.247.327.367.702.367 1.117 0 .343-.072.655-.207.926-.144.272-.336.511-.583.703-.248.2-.543.343-.886.447-.36.111-.734.167-1.142.167zM21.698 16.207c-2.626 1.94-6.442 2.969-9.722 2.969-4.598 0-8.74-1.7-11.87-4.526-.247-.223-.024-.527.272-.351 3.384 1.963 7.559 3.153 11.877 3.153 2.914 0 6.114-.607 9.06-1.852.439-.2.814.287.383.607zM22.792 14.961c-.336-.43-2.22-.207-3.074-.103-.255.032-.295-.192-.063-.36 1.5-1.053 3.967-.75 4.254-.399.287.36-.08 2.826-1.485 4.007-.215.184-.423.088-.327-.151.32-.79 1.03-2.57.695-2.994z"/></svg>
+            </span>
+            <div>
+              <div class="edu-degree">AWS Academy Graduate — Cloud Foundations</div>
+              <div class="edu-school">Amazon Web Services (AWS)</div>
+            </div>
+          </div>
+          <div class="edu-when">May 2025</div>
+        </div>
+        <div class="edu-item cert-item">
+          <div class="cert-main">
+            <span class="cert-logo" aria-hidden="true">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16.331 18.171V17.06l-.022.01c-.25.121-.522.19-.801.203a1.186 1.186 0 01-.806-.237 1.038 1.038 0 01-.352-.498 1.21 1.21 0 01-.023-.667c.052-.225.178-.426.357-.569.16-.134.355-.218.562-.242a1.85 1.85 0 011.061.198l.024.013v-1.117l-.051-.014a2.862 2.862 0 00-1.011-.132 2.34 2.34 0 00-.903.206c-.287.132-.54.327-.739.571a2.221 2.221 0 00-.04 2.705c.295.378.709.645 1.175.756.491.12 1.006.102 1.487-.052l.082-.023M5.336 18.171V17.06l-.022.01c-.25.121-.522.19-.801.203a1.183 1.183 0 01-.806-.237 1.03 1.03 0 01-.351-.498 1.202 1.202 0 01-.024-.667c.052-.225.177-.426.357-.569.16-.134.355-.218.562-.242a1.85 1.85 0 011.061.198l.024.013v-1.117l-.051-.014a2.862 2.862 0 00-1.011-.132 2.344 2.344 0 00-.903.206 2.08 2.08 0 00-.74.571 2.224 2.224 0 00-.041 2.705 2.11 2.11 0 001.176.756c.491.12 1.005.102 1.487-.052l.083-.023M9.26 17.249l-.004.957.07.012c.22.041.441.069.664.085.195.019.391.022.587.012.187-.014.372-.049.551-.104.21-.06.405-.163.571-.305a1.16 1.16 0 00.333-.478 1.31 1.31 0 00-.007-.96 1.068 1.068 0 00-.298-.414 1.261 1.261 0 00-.438-.255l-.722-.268a.388.388 0 01-.197-.188.245.245 0 01.008-.219.382.382 0 01.154-.142.798.798 0 01.257-.074c.153-.022.308-.021.46.005.18.02.358.051.533.096l.038.008v-.883l-.069-.015a4.749 4.749 0 00-.543-.097 2.844 2.844 0 00-.714-.003c-.3.027-.585.143-.821.33-.16.126-.281.293-.351.484-.104.29-.105.608 0 .899.054.145.14.274.252.381.097.093.207.173.327.236.157.084.324.149.497.195.057.017.114.035.17.054l.085.031.024.01c.084.03.162.078.226.14.045.042.08.094.101.151a.325.325 0 01.001.161.339.339 0 01-.166.198.856.856 0 01-.275.086 2.032 2.032 0 01-.427.021 5.208 5.208 0 01-.557-.074 9.195 9.195 0 01-.287-.067l-.033-.006zm-2.475.995h1.05v-4.167h-1.05v4.167zm12.162-2.936a1.095 1.095 0 011.541.158 1.094 1.094 0 01-.157 1.541l-.017.014a1.096 1.096 0 01-1.367-1.713m-1.525.854a2.193 2.193 0 002.666 2.107 2.139 2.139 0 00.701-3.937 2.207 2.207 0 00-3.367 1.83M22.961 10.728a.52.52 0 001.039 0V9.573a.52.52 0 00-1.039 0v1.155M20.117 10.728a.522.522 0 001.041 0V8.139a.521.521 0 00-1.04 0v2.589M17.231 11.771a.521.521 0 001.039 0V6.17a.52.52 0 00-1.039 0v5.601M14.393 10.728a.521.521 0 001.04 0V8.139a.52.52 0 00-1.039 0v2.589M11.494 10.728a.522.522 0 001.039 0V9.573a.52.52 0 00-1.039 0v1.155M8.624 10.728a.52.52 0 001.039 0V8.139a.52.52 0 00-1.039 0v2.589M5.737 11.771a.52.52 0 001.039 0V6.17a.52.52 0 00-1.039 0v5.601M2.876 10.728a.522.522 0 001.04 0V8.139a.52.52 0 00-1.039 0v2.589M0 10.728a.521.521 0 001.039 0V9.573a.52.52 0 00-1.039 0v1.155"/></svg>
+            </span>
+            <div>
+              <div class="edu-degree">CCNA: Introduction to Networks</div>
+              <div class="edu-school">Cisco</div>
+            </div>
+          </div>
+          <div class="edu-when">Mar 2024</div>
+        </div>
+        <div class="edu-item cert-item">
+          <div class="cert-main">
+            <span class="cert-logo" aria-hidden="true">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16.331 18.171V17.06l-.022.01c-.25.121-.522.19-.801.203a1.186 1.186 0 01-.806-.237 1.038 1.038 0 01-.352-.498 1.21 1.21 0 01-.023-.667c.052-.225.178-.426.357-.569.16-.134.355-.218.562-.242a1.85 1.85 0 011.061.198l.024.013v-1.117l-.051-.014a2.862 2.862 0 00-1.011-.132 2.34 2.34 0 00-.903.206c-.287.132-.54.327-.739.571a2.221 2.221 0 00-.04 2.705c.295.378.709.645 1.175.756.491.12 1.006.102 1.487-.052l.082-.023M5.336 18.171V17.06l-.022.01c-.25.121-.522.19-.801.203a1.183 1.183 0 01-.806-.237 1.03 1.03 0 01-.351-.498 1.202 1.202 0 01-.024-.667c.052-.225.177-.426.357-.569.16-.134.355-.218.562-.242a1.85 1.85 0 011.061.198l.024.013v-1.117l-.051-.014a2.862 2.862 0 00-1.011-.132 2.344 2.344 0 00-.903.206 2.08 2.08 0 00-.74.571 2.224 2.224 0 00-.041 2.705 2.11 2.11 0 001.176.756c.491.12 1.005.102 1.487-.052l.083-.023M9.26 17.249l-.004.957.07.012c.22.041.441.069.664.085.195.019.391.022.587.012.187-.014.372-.049.551-.104.21-.06.405-.163.571-.305a1.16 1.16 0 00.333-.478 1.31 1.31 0 00-.007-.96 1.068 1.068 0 00-.298-.414 1.261 1.261 0 00-.438-.255l-.722-.268a.388.388 0 01-.197-.188.245.245 0 01.008-.219.382.382 0 01.154-.142.798.798 0 01.257-.074c.153-.022.308-.021.46.005.18.02.358.051.533.096l.038.008v-.883l-.069-.015a4.749 4.749 0 00-.543-.097 2.844 2.844 0 00-.714-.003c-.3.027-.585.143-.821.33-.16.126-.281.293-.351.484-.104.29-.105.608 0 .899.054.145.14.274.252.381.097.093.207.173.327.236.157.084.324.149.497.195.057.017.114.035.17.054l.085.031.024.01c.084.03.162.078.226.14.045.042.08.094.101.151a.325.325 0 01.001.161.339.339 0 01-.166.198.856.856 0 01-.275.086 2.032 2.032 0 01-.427.021 5.208 5.208 0 01-.557-.074 9.195 9.195 0 01-.287-.067l-.033-.006zm-2.475.995h1.05v-4.167h-1.05v4.167zm12.162-2.936a1.095 1.095 0 011.541.158 1.094 1.094 0 01-.157 1.541l-.017.014a1.096 1.096 0 01-1.367-1.713m-1.525.854a2.193 2.193 0 002.666 2.107 2.139 2.139 0 00.701-3.937 2.207 2.207 0 00-3.367 1.83M22.961 10.728a.52.52 0 001.039 0V9.573a.52.52 0 00-1.039 0v1.155M20.117 10.728a.522.522 0 001.041 0V8.139a.521.521 0 00-1.04 0v2.589M17.231 11.771a.521.521 0 001.039 0V6.17a.52.52 0 00-1.039 0v5.601M14.393 10.728a.521.521 0 001.04 0V8.139a.52.52 0 00-1.039 0v2.589M11.494 10.728a.522.522 0 001.039 0V9.573a.52.52 0 00-1.039 0v1.155M8.624 10.728a.52.52 0 001.039 0V8.139a.52.52 0 00-1.039 0v2.589M5.737 11.771a.52.52 0 001.039 0V6.17a.52.52 0 00-1.039 0v5.601M2.876 10.728a.522.522 0 001.04 0V8.139a.52.52 0 00-1.039 0v2.589M0 10.728a.521.521 0 001.039 0V9.573a.52.52 0 00-1.039 0v1.155"/></svg>
+            </span>
+            <div>
+              <div class="edu-degree">Introduction to Cybersecurity</div>
+              <div class="edu-school">Cisco</div>
+            </div>
+          </div>
+          <div class="edu-when">Nov 2023</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section id="contact">
+      <span class="seclabel reveal">Contact</span>
+      <h2 class="sechead reveal">Open to opportunities and good conversations.</h2>
+      <a class="contact-mail reveal" href="mailto:connisquer@gmail.com">connisquer@gmail.com</a>
+      <div class="contact-social reveal">
+        <a class="link-u" href="https://github.com/jvalenteros" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a class="link-u" href="https://www.linkedin.com/in/johannvalenteros/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a class="link-u" href="https://x.com/p_aizuri" target="_blank" rel="noopener noreferrer">X</a>
+        <a class="link-u" href="https://spaceportside.bandcamp.com/" target="_blank" rel="noopener noreferrer">Bandcamp</a>
+      </div>
+    </section>
+
+    <footer>
+      <span>© 2019–2026 Johann Valenteros</span>
+      <span>Hosted on Github Pages</span>
+    </footer>
+
+  </main>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var intro = document.getElementById('intro');
+  var introName = document.getElementById('introName');
+  var heroName = document.getElementById('heroName');
+  var entered = false;
+
+  // Reset scroll so the FLIP math match with the hero real position
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  window.scrollTo(0, 0);
+
+  function showCue(){ intro.classList.add('ready'); }
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(showCue);
+    setTimeout(showCue, 1200); // fallback if fonts hang
+  } else {
+    setTimeout(showCue, 200);
+  }
+
+  function finish(){
+    intro.style.display = 'none';
+    document.body.classList.add('entered');
+  }
+
+  function enter(){
+    if (entered) return;
+    entered = true;
+    intro.classList.add('leaving');
+
+    if (reduce) {
+      heroName.style.opacity = 1;
+      finish();
+      return;
+    }
+
+    // FLIP: morph the intro name onto the hero name's exact spot
+    var a = introName.getBoundingClientRect();
+    var b = heroName.getBoundingClientRect();
+    var dx = b.left - a.left;
+    var dy = b.top - a.top;
+    var scale = b.width / a.width;
+
+    introName.style.transformOrigin = 'top left';
+    // next frame so the transition is applied from the centered position
+    requestAnimationFrame(function(){
+      introName.style.transform = 'translate(' + dx + 'px,' + dy + 'px) scale(' + scale + ')';
+      document.body.classList.add('entered');
+    });
+
+    var swapped = false;
+    function swap(){
+      if (swapped) return; swapped = true;
+      heroName.style.opacity = 1;   // reveal the real heading beneath
+      finish();
+    }
+    introName.addEventListener('transitionend', swap, { once:true });
+    setTimeout(swap, 1100); // safety net
+  }
+
+  intro.addEventListener('click', enter);
+  intro.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); enter(); }
+  });
+
+  // ----- scroll reveals -----
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && !reduce) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, { threshold:0.12, rootMargin:'0px 0px -8% 0px' });
+    reveals.forEach(function(el){ io.observe(el); });
+  } else {
+    reveals.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  // ----- project expand/collapse -----
+  document.querySelectorAll('.proj-head').forEach(function(head){
+    function toggle(){
+      var proj = head.closest('.proj');
+      var open = proj.classList.toggle('open');
+      head.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    head.addEventListener('click', toggle);
+    head.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+    });
+  });
+
+  // ----- nav active state -----
+  var sections = document.querySelectorAll('main section[id]');
+  var navlinks = {};
+  document.querySelectorAll('.nav-links a').forEach(function(a){
+    navlinks[a.getAttribute('href').slice(1)] = a;
+  });
+  if ('IntersectionObserver' in window) {
+    var navio = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){
+          Object.values(navlinks).forEach(function(l){ l && l.classList.remove('active'); });
+          var link = navlinks[en.target.id];
+          if (link) link.classList.add('active');
+        }
+      });
+    }, { threshold:0.5 });
+    sections.forEach(function(s){ navio.observe(s); });
+  }
+
+  // ----- optional: live repo count (graceful, never breaks the page) -----
+  fetch('https://api.github.com/users/jvalenteros')
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(d){
+      if (d && typeof d.public_repos === 'number'){
+        var el = document.getElementById('repoCount');
+        if (el) el.textContent = d.public_repos;
+      }
+    })
+    .catch(function(){});
+})();
+</script>
 </body>
 </html>

@@ -1,71 +1,68 @@
-# Johann Valenteros - Digital Portfolio
+# Johann Valenteros — Portfolio
 
-[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
-[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
-[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-[![Responsive](https://img.shields.io/badge/Responsive-Design-green?style=for-the-badge)](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design)
-[![Accessibility](https://img.shields.io/badge/Accessibility-Focused-blue?style=for-the-badge)](https://www.w3.org/WAI/fundamentals/accessibility-intro/)
+A single-page personal portfolio built from scratch with vanilla HTML, CSS, and
+JavaScript. No frameworks and no build step — everything lives in one
+self-contained `index.html`. The design is deliberately minimal: a monochrome
+palette, restrained typography, and motion that stays out of the way.
 
-A hyperminimalist portfolio website showcasing my skills, projects, and background in cybersecurity and software development.
+Live at [jvalenteros.github.io](https://jvalenteros.github.io).
 
-## ✨ Features
+## Design
 
-- **Terminal-Inspired Design**: Clean, minimalist interface with terminal-like aesthetics
-- **Responsive Layout**: Optimized for all devices from mobile to desktop
-- **Interactive UI**: Subtle animations and transitions enhance user experience
-- **Project Showcase**: Detailed project cards with expandable information
-- **Skills Section**: Visual representation of technical and soft skills
-- **Academic Transcripts**: Academic background and coursework details
-- **Contact Information**: Multiple ways to connect professionally
+- Hyperminimalist dark interface on a single monochrome palette
+- A morphing intro — the name animates into its final position (FLIP) on enter
+- Scroll-triggered reveals via `IntersectionObserver`
+- Expandable project entries and a scroll-synced navigation state
+- Live GitHub repository count from the public API, with a static fallback
+- Fully keyboard-navigable and `prefers-reduced-motion` aware
 
-## 🛠️ Technologies
+## Sections
 
-- **Frontend**: 
-  - HTML5 for structure
-  - CSS3 for styling (with custom properties and animations)
-  - Vanilla JavaScript for interactivity
-- **Design**:
-  - Custom CSS animations
-  - Responsive grid layouts
-  - Modern typography with Google Fonts
+- About — short bio and contribution stats
+- Selected work — security utilities, encryption tools, and web builds
+- Skills — development and design
+- AI Workflow — AI-assisted development with human authorship, review, and QA
+- Education and certifications (AWS, Cisco)
+- Contact
 
-## 🚀 Getting Started
+## Built with
 
-### Prerequisites
+- HTML5
+- CSS3 — custom properties, grid, and hand-written animations
+- Vanilla JavaScript — no dependencies
+- Inter (Google Fonts)
 
-- A  web browser (Chrome, Firefox, Safari, Edge)
+There is no package manifest or build tooling; the styles and scripts are inlined
+in `index.html`.
 
-### Installation
+## Running locally
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/jvalenteros/jvalenteros.github.io
-   ```
+Clone the repository — there is nothing to install or compile.
 
-2. Navigate to the project directory:
-   ```bash
-   cd jvalenteros.github.io
-   ```
+```bash
+git clone https://github.com/jvalenteros/jvalenteros.github.io
+cd jvalenteros.github.io
+```
 
-3. Open `index.html` in your browser:
-   ```bash
-   # On Windows
-   start index.html
-   
-   # On macOS
-   open index.html
-   
-   # On Linux
-   xdg-open index.html
-   ```
-   
-## 📝 License
+Then open the file in any modern browser:
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+```bash
+start index.html      # Windows
+open index.html       # macOS
+xdg-open index.html   # Linux
+```
 
-## 🔗 Connect
+## Deployment
 
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/jvalenteros)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/johannvalenteros/)
-[![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://x.com/p_aizuri)
----
+Hosted on GitHub Pages. Pushes to the default branch publish automatically.
+
+## License
+
+Released under the MIT License. See [LICENSE](LICENSE).
+
+## Links
+
+- GitHub — https://github.com/jvalenteros
+- LinkedIn — https://www.linkedin.com/in/johannvalenteros/
+- X — https://x.com/p_aizuri
+- Bandcamp — https://spaceportside.bandcamp.com/

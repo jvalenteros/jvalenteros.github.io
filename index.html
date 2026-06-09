@@ -7,7 +7,7 @@
 <meta name="description" content="Johann Valenteros — Cybersecurity and Information Systems. Portfolio.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#0a0a0a;
@@ -397,6 +397,32 @@
   .cert-logo svg{width:100%;height:100%;fill:currentColor;display:block;}
   .cert-item:hover .cert-logo{color:var(--fg);}
 
+  /* ---------- experience ---------- */
+  .exp{margin-top:1rem;}
+  .exp-item{padding:1.9rem 0;border-top:1px solid var(--line);}
+  .exp-item:last-child{border-bottom:1px solid var(--line);}
+  .exp-head{display:flex;gap:1.2rem;align-items:flex-start;}
+  .exp-logo{
+    flex-shrink:0;height:1.5rem;margin-top:0.2rem;
+    display:flex;align-items:center;
+    color:var(--muted);transition:color 0.3s ease;
+  }
+  .exp-logo svg{height:100%;width:auto;display:block;fill:currentColor;}
+  .exp-item:hover .exp-logo{color:var(--fg);}
+  .exp-body{flex:1;min-width:0;}
+  .exp-toprow{
+    display:flex;justify-content:space-between;align-items:baseline;
+    gap:0.4rem 2rem;flex-wrap:wrap;
+  }
+  .exp-role{font-size:clamp(1.05rem,2.6vw,1.4rem);font-weight:300;}
+  .exp-org{color:var(--muted);font-size:0.95rem;margin-top:0.35rem;}
+  .exp-note{color:var(--faint);font-size:0.8rem;letter-spacing:0.05em;margin-top:0.35rem;}
+  .exp-when{
+    color:var(--faint);font-size:0.74rem;letter-spacing:0.16em;text-transform:uppercase;
+    white-space:nowrap;
+  }
+  .exp-desc{color:var(--muted);font-size:0.95rem;margin-top:1.1rem;max-width:62ch;line-height:1.7;}
+
   /* ---------- contact ---------- */
   .contact-mail{
     display:inline-block;
@@ -445,6 +471,7 @@
       <a href="#work">Work</a>
       <a href="#skills">Skills</a>
       <a href="#ai">AI</a>
+      <a href="#experience">Experience</a>
       <a href="#education">Education</a>
       <a href="#contact" class="nav-cta">Contact</a>
     </div>
@@ -634,6 +661,31 @@
             <li>Insomnia API</li>
             <li>Server &amp; databases</li>
           </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== EXPERIENCE ===== -->
+    <section id="experience">
+      <span class="seclabel reveal">Experience</span>
+      <div class="exp reveal">
+        <div class="exp-item">
+          <div class="exp-head">
+            <span class="exp-logo" aria-hidden="true">
+              <svg viewBox="0 0 98 32" xmlns="http://www.w3.org/2000/svg"><text x="49" y="24.5" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-weight="700" font-size="27" letter-spacing="0.5" fill="currentColor">UMSL</text></svg>
+            </span>
+            <div class="exp-body">
+              <div class="exp-toprow">
+                <div>
+                  <div class="exp-role">Healthcare Simulation &amp; Information Systems Assistant</div>
+                  <div class="exp-org">University of Missouri–St. Louis · Part-time</div>
+                  <div class="exp-note">St. Louis, Missouri · On-site</div>
+                </div>
+                <div class="exp-when">Jan 2026 — Present</div>
+              </div>
+              <p class="exp-desc">Supported medical simulation equipment used in healthcare education and training environments. Assisted with equipment setup, troubleshooting, and organization.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

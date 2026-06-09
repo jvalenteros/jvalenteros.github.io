@@ -1,16 +1,16 @@
 # Johann Valenteros — Portfolio
 
-A single-page personal portfolio built from scratch with vanilla HTML, CSS, and
-JavaScript. No frameworks and no build step — everything lives in one
-self-contained `index.html`. The design is deliberately minimal: a monochrome
-palette, restrained typography, and motion that stays out of the way.
+A hypersimple single-page personal portfolio built from scratch with vanilla HTML, CSS, and
+JavaScript. No frameworks and no build step.
+Self-contained `index.html`. My design is a monochrome minimalist
+palette, sans serif typography (Inter), and transition animations that are minimal.
 
 Live at [jvalenteros.github.io](https://jvalenteros.github.io).
 
 ## Design
 
 - Hyperminimalist dark interface on a single monochrome palette
-- A morphing intro — the name animates into its final position (FLIP) on enter
+- A morphing intro, the name animates into its final position (FLIP) on enter
 - Scroll-triggered reveals via `IntersectionObserver`
 - Expandable project entries and a scroll-synced navigation state
 - Live GitHub repository count from the public API, with a static fallback
@@ -18,26 +18,26 @@ Live at [jvalenteros.github.io](https://jvalenteros.github.io).
 
 ## Sections
 
-- About — short bio and contribution stats
-- Selected work — security utilities, encryption tools, and web builds
-- Skills — development and design
-- AI Workflow — AI-assisted development with human authorship, review, and QA
+- About: short bio and contribution stats
+- Selected works: security utilities, encryption tools, and web builds
+- Skills: development and design
+- AI Workflow: AI-assisted development with human authorship, review, and QA
 - Education and certifications (AWS, Cisco)
 - Contact
 
 ## Built with
 
 - HTML5
-- CSS3 — custom properties, grid, and hand-written animations
-- Vanilla JavaScript — no dependencies
+- CSS3: custom properties, grid, and hand-written animations
+- Vanilla JavaScript: no dependencies
 - Inter (Google Fonts)
 
-There is no package manifest or build tooling; the styles and scripts are inlined
+There is no package manifest or build tooling, all the styles and scripts are inlined
 in `index.html`.
 
 ## Running locally
 
-Clone the repository — there is nothing to install or compile.
+Clone the repo:
 
 ```bash
 git clone https://github.com/jvalenteros/jvalenteros.github.io
@@ -54,7 +54,7 @@ xdg-open index.html   # Linux
 
 ## Deployment
 
-Hosted on GitHub Pages. Pushes to the default branch publish automatically.
+Hosted on GitHub Pages.
 
 ## License
 

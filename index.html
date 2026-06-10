@@ -970,7 +970,7 @@
         sections.forEach(function(s){ navio.observe(s); });
       }
       
-      // ----- optional: live repo count (graceful, never breaks the page) -----
+      // ----- optional: live repo count -----
       fetch('https://api.github.com/users/jvalenteros')
       .then(function(r){ return r.ok ? r.json() : null; })
       .then(function(d){

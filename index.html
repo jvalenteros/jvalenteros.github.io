@@ -323,6 +323,7 @@
     }
     .proj.open .proj-content{opacity:1;transform:none;}
     .proj-desc{color:var(--muted);margin-bottom:1.4rem;}
+    .proj-desc .em{color:var(--fg);}
     .proj-sub{
       font-size:0.7rem;letter-spacing:0.22em;text-transform:uppercase;
       color:var(--faint);margin:1.4rem 0 0.7rem;
@@ -339,7 +340,24 @@
       padding:0.32rem 0.8rem;
     }
     .proj-links{display:flex;gap:1.4rem;margin-top:0.4rem;}
-    
+
+    /* ---------- featured project ---------- */
+    .proj.feat{
+      background:rgba(255,255,255,0.025);
+      box-shadow:inset 2px 0 0 var(--line-strong);
+    }
+    .proj.feat:hover{background:rgba(255,255,255,0.045);}
+    .proj.feat .proj-head{padding-left:1.1rem;}
+    .proj.feat:hover .proj-head{padding-left:2rem;}
+    .proj.feat .proj-content{padding-left:1.1rem;}
+    .proj.feat .proj-title{color:var(--fg);font-weight:400;}
+    .proj-badge{
+      font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;
+      color:var(--fg);background:rgba(255,255,255,0.06);
+      border:1px solid var(--line-strong);border-radius:100px;
+      padding:0.22rem 0.6rem;
+    }
+
     /* ---------- skills ---------- */
     .skillgrid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,6vw,5rem);margin-top:1rem;}
     @media(max-width:600px){.skillgrid{grid-template-columns:1fr;gap:3rem;}}
@@ -550,7 +568,28 @@
             <div class="proj-links"><a class="link-u" href="https://github.com/jvalenteros/encryption-app-py" target="_blank" rel="noopener noreferrer">View repository</a></div>
           </div></div></div>
         </article>
-        
+
+        <article class="proj feat">
+          <div class="proj-head" role="button" tabindex="0" aria-expanded="false">
+            <span class="proj-title">jvblog</span>
+            <span class="proj-meta"><span class="proj-badge">Featured</span>Astro · Blog <span class="proj-plus" aria-hidden="true"></span></span>
+          </div>
+          <div class="proj-body"><div class="proj-body-inner"><div class="proj-content">
+            <p class="proj-desc">A minimalist, experimental personal blog built with Astro. Posts and worldbuilding lore are written as plain Markdown and stitched together Obsidian-style with <span class="em">[[wiki-links]]</span>.</p>
+            <div class="proj-sub">Highlights</div>
+            <ul class="proj-list">
+              <li>Built with Astro, content authored as Markdown in an Obsidian vault</li>
+              <li>Obsidian-style [[wiki-links]] connect posts, characters, and lore</li>
+              <li>Broken-link checking wired into the production build</li>
+            </ul>
+            <div class="proj-tags"><span class="tag">Astro</span><span class="tag">Markdown</span><span class="tag">Obsidian</span><span class="tag">JavaScript</span></div>
+            <div class="proj-links">
+              <a class="link-u" href="https://jvalenteros.github.io/jvblog" target="_blank" rel="noopener noreferrer">Read the blog</a>
+              <a class="link-u" href="https://github.com/jvalenteros/jvblog" target="_blank" rel="noopener noreferrer">View repository</a>
+            </div>
+          </div></div></div>
+        </article>
+
         <article class="proj">
           <div class="proj-head" role="button" tabindex="0" aria-expanded="false">
             <span class="proj-title">Ciphers</span>

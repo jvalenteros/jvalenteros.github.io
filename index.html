@@ -490,6 +490,9 @@
       display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
       color:var(--faint);font-size:0.72rem;letter-spacing:0.1em;
     }
+    .foot-meta{display:flex;align-items:center;flex-wrap:wrap;gap:1.2rem 1.6rem;}
+    .foot-views{color:var(--muted);font-variant-numeric:tabular-nums;}
+    .foot-views::before{content:"●";color:var(--faint);margin-right:0.5rem;font-size:0.6em;vertical-align:middle;}
     
     @media(prefers-reduced-motion:reduce){
       *{animation-duration:0.001ms!important;transition-duration:0.001ms!important;}
@@ -888,7 +891,11 @@
     
     <footer>
       <span>© 2019–2026 Johann Valenteros</span>
-      <span>Hosted on Github Pages</span>
+      <span class="foot-meta">
+        <span id="viewCount" class="foot-views" aria-label="Total page views">— views</span>
+        <a id="statsLink" class="link-u" href="https://www.goatcounter.com" target="_blank" rel="noopener noreferrer">Visitor stats</a>
+        <span>Hosted on Github Pages</span>
+      </span>
     </footer>
     
   </main>
@@ -1019,6 +1026,33 @@
         }
       })
       .catch(function(){});
+
+      // ----- visitor counter + stats (GoatCounter) -----
+      // One-time setup: make a free site at https://www.goatcounter.com/, then
+      // set GC below to your site code (the "CODE" in https://CODE.goatcounter.com).
+      // In GoatCounter Settings, enable "Allow adding visitor counts to the site"
+      // so the live total below works, and set the dashboard to public.
+      var GC = 'jvalenteros';
+      if (GC !== 'jvalenteros') {
+        var base = 'https://' + GC + '.goatcounter.com';
+        // record this pageview
+        var gc = document.createElement('script');
+        gc.async = true;
+        gc.src = '//gc.zgo.at/count.js';
+        gc.setAttribute('data-goatcounter', base + '/count');
+        document.body.appendChild(gc);
+        // point the footer "Visitor stats" link at the public dashboard
+        var sl = document.getElementById('statsLink');
+        if (sl) sl.href = base;
+        // show the live total view count
+        fetch(base + '/counter/TOTAL.json')
+        .then(function(r){ return r.ok ? r.json() : null; })
+        .then(function(d){
+          var el = document.getElementById('viewCount');
+          if (el && d && d.count) el.textContent = d.count + ' views';
+        })
+        .catch(function(){});
+      }
     })();
   </script>
 </body>

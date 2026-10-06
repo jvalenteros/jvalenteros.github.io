@@ -3,8 +3,7 @@
 HTML is all you need for a website.
 
 This site is a single `index.html` file. No CSS, no JavaScript, no web fonts, no
-frameworks, no build step. The browser already knows how to render a document, so
-the page leaves that job to the browser.
+frameworks, no build steps
 
 Main inspiration: [motherfuckingwebsite.com](https://motherfuckingwebsite.com/).
 

@@ -1,39 +1,31 @@
 # Johann Valenteros — Portfolio
 
-A hypersimple single-page personal portfolio built from scratch with vanilla HTML, CSS, and
-JavaScript. No frameworks and no build step.
-Self-contained `index.html`. My design is a monochrome minimalist
-palette, sans serif typography (Inter), and transition animations that are minimal.
+HTML is all you need for a website.
+
+This site is a single `index.html` file. No CSS, no JavaScript, no web fonts, no
+frameworks, no build step. The browser already knows how to render a document, so
+the page leaves that job to the browser.
+
+Main inspiration: [motherfuckingwebsite.com](https://motherfuckingwebsite.com/).
 
 Live at [jvalenteros.github.io](https://jvalenteros.github.io).
 
-## Design
+## How it works
 
-- Hyperminimalist dark interface on a single monochrome palette
-- A morphing intro, the name animates into its final position (FLIP) on enter
-- Scroll-triggered reveals via `IntersectionObserver`
-- Expandable project entries and a scroll-synced navigation state
-- Live GitHub repository count from the public API, with a static fallback
-- Fully keyboard-navigable and `prefers-reduced-motion` aware
+- Semantic HTML: `header`, `nav`, `main`, `section`, `dl`, `address`, `footer`
+- Expandable project and experience entries use native `<details>` / `<summary>`
+- Light and dark mode come from `<meta name="color-scheme" content="light dark">`
+- Works in any browser, including text-only ones, screen readers, and reader mode
 
 ## Sections
 
-- About: short bio and contribution stats
+- About
 - Selected works: security utilities, encryption tools, and web builds
-- Skills: development and design
-- AI Workflow: AI-assisted development with human authorship, review, and QA
+- Skills
+- AI workflow
+- Experience
 - Education and certifications (AWS, Cisco)
 - Contact
-
-## Built with
-
-- HTML5
-- CSS3: custom properties, grid, and hand-written animations
-- Vanilla JavaScript: no dependencies
-- Inter (Google Fonts)
-
-There is no package manifest or build tooling, all the styles and scripts are inlined
-in `index.html`.
 
 ## Running locally
 
@@ -44,7 +36,7 @@ git clone https://github.com/jvalenteros/jvalenteros.github.io
 cd jvalenteros.github.io
 ```
 
-Then open the file in any modern browser:
+Then open the file in any browser:
 
 ```bash
 start index.html      # Windows

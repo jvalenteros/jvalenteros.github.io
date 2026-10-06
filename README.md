@@ -55,5 +55,3 @@ Released under the MIT License. See [LICENSE](LICENSE).
 
 - GitHub — https://github.com/jvalenteros
 - LinkedIn — https://www.linkedin.com/in/johannvalenteros/
-- X — https://x.com/p_aizuri
-- Bandcamp — https://spaceportside.bandcamp.com/
